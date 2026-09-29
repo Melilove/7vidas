@@ -113,7 +113,7 @@ body.t-moss .leaf{display:block}
 <script>
 (function () {
 "use strict";
-var VERSION = "v1.1.1", KEY = "7vidas:v1", DAY = 864e5;
+var VERSION = "v1.2.0", KEY = "7vidas:v1", DAY = 864e5;
 var DICT = {
       es: {
         tagline: "Siete vidas en cada página", sig: "Hecha por melitalove, para melitalove", version: "Versión", enter: "Entrar", switchMode: "Cambiar modo", moreNav: "Más secciones", mainNav: "Secciones principales",
@@ -237,19 +237,31 @@ var DICT = {
       }
     };
 var EXTRA = {
-  es: { sigA: "Creada por melitalove", sigB: "para melitalove", syncCloud: "Tus datos se guardan en tu cuenta y te siguen en cada dispositivo.", syncLocal: "Tus datos se guardan en este dispositivo. Exporta un respaldo de vez en cuando.", del: "Eliminar libro", delConfirm: "Toca otra vez para eliminar", edit: "Editar", editTitle: "Editar libro", cancel: "Cancelar", remove: "Eliminar",
+  es: { readsOne: "Leído 1 vez", styles: { horror: "Terror", growth: "Desarrollo personal", psycho: "Psicoanálisis", feminism: "Feminismo", finance: "Finanzas", novel: "Novela", fantasy: "Fantasía", essay: "Ensayo", other: "Otro" },
+    camera: "Tomar foto", gallery: "Galería", photoErr: "No pude leer esa foto. Prueba con otra.", scanPhoto: "Foto del código", scanHint: "Acerca el código hasta que se vea nítido dentro del recuadro.", badIsbn: "Ese número no es un ISBN válido. Revisa los dígitos.", byTitle: "Buscar por título", needTitleSearch: "Escribe el título para buscarlo.",
+    seeAll: "Ver los {n}", seeLess: "Ver menos", noBookOpt: "Sin libro",
+    loanQ: "Es prestado", loanFromQ: "¿Quién te lo prestó?", loanAtQ: "Fecha en que te lo prestaron (aprox.)", loanBackQ: "Fecha en que lo devolviste (si ya lo devolviste)", loanDate: "Fecha (aprox.)", history: "Devueltos", borrowed: "Prestado", lentBy: "Te lo prestó", lentOn: "el", returnedOn: "Devuelto el", since: "desde", returnedDate: "Fecha de devolución", minusRead: "Quitar una lectura", plusRead: "Sumar una lectura",
+    sigA: "Creada por melitalove", sigB: "para melitalove", syncCloud: "Tus datos se guardan en tu cuenta y te siguen en cada dispositivo.", syncLocal: "Tus datos se guardan en este dispositivo. Exporta un respaldo de vez en cuando.", del: "Eliminar libro", delConfirm: "Toca otra vez para eliminar", edit: "Editar", editTitle: "Editar libro", cancel: "Cancelar", remove: "Eliminar",
     installNote: "Para instalarla con su ícono, ábrela desde tu página de GitHub.", installIOS: "En iPhone: abre 7 Vidas en Safari, toca Compartir y luego “Agregar a inicio”.", installAndroid: "En Android: abre el menú de Chrome y toca “Instalar app”.", installed: "7 Vidas ya está instalada en este dispositivo.",
     exportOk: "Respaldo listo.", importOk: "Respaldo importado.", importBad: "Ese archivo no es un respaldo de 7 Vidas.", busy: "Procesando foto…",
     scan: "Escanear código", isbn: "ISBN", isbnPh: "Escribe el ISBN", lookup: "Buscar", looking: "Buscando…", found: "Encontré el libro. Revisa los datos.", notFound: "No encontré ese ISBN. Complétalo a mano.", offline: "Sin conexión: completa los datos a mano.", camNo: "Este navegador no escanea códigos. Escribe el ISBN.", scanning: "Apunta la cámara al código de barras", closeCam: "Cerrar cámara",
     moodAny: "Cualquiera", moodFear: "Quiero miedo", moodGrow: "Quiero crecer", placed: "Va en el N° {n} de tu librero.",
     recapBtn: "Ver mi resumen del año", recapTitle: "Tu año lector", recapBooks: "libros terminados", recapAuthor: "Autor del año", recapVida: "Vida del año", recapQuote: "Frase del año", recapNone: "Aún no hay lecturas terminadas este año.", happy: "¡Feliz cumpleaños, Melannie! Aquí está tu año lector." },
-  en: { sigA: "Created by melitalove", sigB: "for melitalove", syncCloud: "Your data is saved to your account and follows you on every device.", syncLocal: "Your data is saved on this device. Export a backup now and then.", del: "Delete book", delConfirm: "Tap again to delete", edit: "Edit", editTitle: "Edit book", cancel: "Cancel", remove: "Delete",
+  en: { readsOne: "Read once", styles: { horror: "Horror", growth: "Personal growth", psycho: "Psychoanalysis", feminism: "Feminism", finance: "Finance", novel: "Novel", fantasy: "Fantasy", essay: "Essay", other: "Other" },
+    camera: "Take photo", gallery: "Gallery", photoErr: "I couldn't read that photo. Try another one.", scanPhoto: "Photo of barcode", scanHint: "Bring the barcode closer until it looks sharp inside the frame.", badIsbn: "That isn't a valid ISBN. Check the digits.", byTitle: "Search by title", needTitleSearch: "Type the title to search for it.",
+    seeAll: "See all {n}", seeLess: "See less", noBookOpt: "No book",
+    loanQ: "It's borrowed", loanFromQ: "Who lent it to you?", loanAtQ: "Date you borrowed it (approx.)", loanBackQ: "Date you returned it (if you already did)", loanDate: "Date (approx.)", history: "Returned", borrowed: "Borrowed", lentBy: "Lent by", lentOn: "on", returnedOn: "Returned on", since: "since", returnedDate: "Return date", minusRead: "Remove a reading", plusRead: "Add a reading",
+    sigA: "Created by melitalove", sigB: "for melitalove", syncCloud: "Your data is saved to your account and follows you on every device.", syncLocal: "Your data is saved on this device. Export a backup now and then.", del: "Delete book", delConfirm: "Tap again to delete", edit: "Edit", editTitle: "Edit book", cancel: "Cancel", remove: "Delete",
     installNote: "To install it with its icon, open it from your GitHub page.", installIOS: "On iPhone: open 7 Vidas in Safari, tap Share, then “Add to Home Screen”.", installAndroid: "On Android: open Chrome's menu and tap “Install app”.", installed: "7 Vidas is already installed on this device.",
     exportOk: "Backup ready.", importOk: "Backup imported.", importBad: "That file isn't a 7 Vidas backup.", busy: "Processing photo…",
     scan: "Scan barcode", isbn: "ISBN", isbnPh: "Type the ISBN", lookup: "Look up", looking: "Searching…", found: "Found it. Check the details.", notFound: "Couldn't find that ISBN. Fill it in by hand.", offline: "Offline: fill in the details by hand.", camNo: "This browser can't scan barcodes. Type the ISBN.", scanning: "Point the camera at the barcode", closeCam: "Close camera",
     moodAny: "Any", moodFear: "I want fear", moodGrow: "I want to grow", placed: "It goes in No. {n} of your bookcase.",
     recapBtn: "See my year recap", recapTitle: "Your reading year", recapBooks: "books finished", recapAuthor: "Author of the year", recapVida: "Life of the year", recapQuote: "Quote of the year", recapNone: "No finished readings this year yet.", happy: "Happy birthday, Melannie! Here's your reading year." },
-  it: { sigA: "Creata da melitalove", sigB: "per melitalove", syncCloud: "I tuoi dati sono salvati nel tuo account e ti seguono su ogni dispositivo.", syncLocal: "I tuoi dati sono salvati su questo dispositivo. Esporta un backup ogni tanto.", del: "Elimina libro", delConfirm: "Tocca di nuovo per eliminare", edit: "Modifica", editTitle: "Modifica libro", cancel: "Annulla", remove: "Elimina",
+  it: { readsOne: "Letto 1 volta", styles: { horror: "Horror", growth: "Crescita personale", psycho: "Psicoanalisi", feminism: "Femminismo", finance: "Finanza", novel: "Romanzo", fantasy: "Fantasy", essay: "Saggio", other: "Altro" },
+    camera: "Scatta foto", gallery: "Galleria", photoErr: "Non riesco a leggere questa foto. Provane un'altra.", scanPhoto: "Foto del codice", scanHint: "Avvicina il codice finché è nitido dentro il riquadro.", badIsbn: "Non è un ISBN valido. Controlla le cifre.", byTitle: "Cerca per titolo", needTitleSearch: "Scrivi il titolo per cercarlo.",
+    seeAll: "Vedi tutti ({n})", seeLess: "Vedi meno", noBookOpt: "Nessun libro",
+    loanQ: "È in prestito", loanFromQ: "Chi te l'ha prestato?", loanAtQ: "Data del prestito (circa)", loanBackQ: "Data di restituzione (se l'hai già reso)", loanDate: "Data (circa)", history: "Restituiti", borrowed: "In prestito", lentBy: "Prestato da", lentOn: "il", returnedOn: "Restituito il", since: "dal", returnedDate: "Data di restituzione", minusRead: "Togli una lettura", plusRead: "Aggiungi una lettura",
+    sigA: "Creata da melitalove", sigB: "per melitalove", syncCloud: "I tuoi dati sono salvati nel tuo account e ti seguono su ogni dispositivo.", syncLocal: "I tuoi dati sono salvati su questo dispositivo. Esporta un backup ogni tanto.", del: "Elimina libro", delConfirm: "Tocca di nuovo per eliminare", edit: "Modifica", editTitle: "Modifica libro", cancel: "Annulla", remove: "Elimina",
     installNote: "Per installarla con la sua icona, aprila dalla tua pagina GitHub.", installIOS: "Su iPhone: apri 7 Vidas in Safari, tocca Condividi e poi “Aggiungi alla schermata Home”.", installAndroid: "Su Android: apri il menu di Chrome e tocca “Installa app”.", installed: "7 Vidas è già installata su questo dispositivo.",
     exportOk: "Backup pronto.", importOk: "Backup importato.", importBad: "Questo file non è un backup di 7 Vidas.", busy: "Elaborazione foto…",
     scan: "Scansiona codice", isbn: "ISBN", isbnPh: "Scrivi l'ISBN", lookup: "Cerca", looking: "Ricerca…", found: "Trovato. Controlla i dati.", notFound: "ISBN non trovato. Compila a mano.", offline: "Offline: compila i dati a mano.", camNo: "Questo browser non scansiona codici. Scrivi l'ISBN.", scanning: "Inquadra il codice a barre", closeCam: "Chiudi fotocamera",
@@ -257,14 +269,18 @@ var EXTRA = {
     recapBtn: "Vedi il mio riepilogo dell'anno", recapTitle: "Il tuo anno di lettura", recapBooks: "libri finiti", recapAuthor: "Autore dell'anno", recapVida: "Vita dell'anno", recapQuote: "Frase dell'anno", recapNone: "Ancora nessuna lettura finita quest'anno.", happy: "Buon compleanno, Melannie! Ecco il tuo anno di lettura." }
 };
 Object.keys(EXTRA).forEach(function (l) { Object.assign(DICT[l], EXTRA[l]); });
-var SK = ["horror", "growth", "novel", "fantasy", "poetry", "essay", "other"];
-var SC = { horror: "#3A2230", growth: "#4F7A4A", novel: "#2B4A3A", fantasy: "#3D4A6B", poetry: "#7A4A5E", essay: "#6B5A3A", other: "#4A5A52" };
+var SK = ["horror", "growth", "psycho", "feminism", "finance", "novel", "fantasy", "essay", "other"];
+var SC = { horror: "#3A2230", growth: "#4F7A4A", psycho: "#5A3F6B", feminism: "#8A3F5A", finance: "#2F5E5A", novel: "#2B4A3A", fantasy: "#3D4A6B", essay: "#6B5A3A", other: "#4A5A52" };
 var VK = ["know", "grow", "imag", "flow", "emo", "dim", "wonder"];
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 function fmt(s, k, v) { return String(s).replace("{" + k + "}", v); }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
 function T() { return DICT[S.lang] || DICT.es; }
-function blankForm(style) { return { title: "", author: "", style: style || "horror", status: "toread", physical: true, pages: "", photo: null, err: false, busy: false, isbn: "", showIsbn: false, scanning: false, isbnMsg: "" }; }
+function isoDay(ts) { var d = new Date(ts), p = function (n) { return (n < 10 ? "0" : "") + n; }; return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
+function fromIso(s) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || ""); return m ? new Date(+m[1], +m[2] - 1, +m[3], 12).getTime() : null; }
+function fmtDay(ts) { try { return new Date(ts).toLocaleDateString(S.lang === "en" ? "en-GB" : S.lang, { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return isoDay(ts); } }
+function blankForm(style) { return { title: "", author: "", style: style || "horror", status: "toread", physical: true, pages: "", photo: null, err: false, busy: false, photoErr: "", isbn: "", showIsbn: false, scanning: false, isbnMsg: "", loan: false, loanFrom: "", loanAt: isoDay(Date.now()), loanBack: "" }; }
+function loanOf(id) { return S.loans.filter(function (l) { return l.bookId === id; })[0] || null; }
 var BOOKS_SVG = '<svg width="18" height="15" viewBox="0 0 24 20" aria-hidden="true"><rect x="2" y="4" width="5" height="15" rx="1" fill="#E8B45A"/><rect x="8" y="2" width="5" height="17" rx="1" fill="#A8CFA0"/><path d="M14.6 5.6l4-1.1 3.7 13.4-4 1.1z" fill="#D9822B"/></svg>';
 function sigHTML(t) { return '<span class="sig">' + esc(t.sigA) + BOOKS_SVG + esc(t.sigB) + '</span>'; }
 
@@ -273,13 +289,14 @@ var S = {
   filter: "all", coll: null, pickId: null, pickEmpty: false,
   f: blankForm("horror"), editId: null, mood: "any", placed: "", placedNext: "", showRecap: false,
   r: { running: false, after: false, timer: 0, startAt: 0, book: null, page: "", vidas: {} },
-  q: { text: "", book: "", err: false }, w: { title: "", author: "", where: "", err: false }, l: { title: "", person: "", err: false, tab: "in" },
+  q: { text: "", bookId: "", err: false }, w: { title: "", author: "", where: "", err: false }, l: { title: "", person: "", at: isoDay(Date.now()), err: false, tab: "in" }, readAll: false,
   bookId: null, bq: "", find: "", findErr: "", hit: null, shelfSel: 0, zPage: 0, note: false, delArm: false, msg: "", sync: "local"
 };
 try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if (saved) applyData(saved); } catch (e) {}
 function applyData(d) {
   ["books", "quotes", "wishes", "loans", "sessions"].forEach(function (k) { if (Array.isArray(d[k])) S[k] = d[k]; });
   S.quotes = S.quotes.map(function (q) { return q.id ? q : Object.assign({ id: uid() }, q); });
+  S.books = S.books.map(function (b) { return SC[b.style] ? b : Object.assign({}, b, { style: "other" }); });
   if (d.lang && DICT[d.lang]) S.lang = d.lang; if (typeof d.night === "boolean") S.night = d.night; if (d.sounds) S.sounds = d.sounds;
 }
 function meta() { return { quotes: S.quotes, wishes: S.wishes, loans: S.loans, sessions: S.sessions, lang: S.lang, night: S.night, sounds: S.sounds, v: 1 }; }
@@ -422,6 +439,8 @@ function vHome(t, D) {
   h += '<div style="position:absolute;left:16px;bottom:14px;right:16px"><div class="serif" style="font-size:22px;font-weight:600">' + esc(t.greet) + '</div><div class="mu" style="font-size:13px">' + esc(D.finTotal ? fmt(t.starsOne, "n", D.finTotal) : t.starsZero) + '</div></div></div>';
   var today = new Date(D.now);
   if (today.getMonth() === 10 && today.getDate() === 3) h += '<button type="button" class="card pop" data-a="recap" data-v="open" style="border-color:var(--gold)"><span class="serif" style="font-size:19px;font-weight:600;color:var(--gold)">' + esc(t.happy) + '</span><span class="btn gold" style="align-self:flex-start">' + esc(t.recapBtn) + '</span></button>';
+  var lin = S.loans.filter(function (l) { return l.dir === "in" && !l.returnedAt; }).length;
+  if (lin) h += '<button type="button" class="card" data-a="go" data-v="loans" style="flex-direction:row;align-items:center;border-color:var(--gold)"><span style="color:var(--gold)">' + ico(IC.loans, 22, 2) + '</span><span style="font-size:14px;font-weight:700">' + esc(fmt(t.loanAlert, "n", lin)) + '</span></button>';
   var pick = S.pickId && byId(S.pickId);
   h += '<section class="card"><h2 class="h2">' + esc(t.pickTitle) + '</h2><div class="scr">' + chip(esc(t.moodAny), S.mood === "any", "mood", "any") + chip(esc(t.moodFear), S.mood === "horror", "mood", "horror") + chip(esc(t.moodGrow), S.mood === "growth", "mood", "growth") + '</div>';
   if (pick) h += '<div class="row pop" style="gap:12px">' + coverHTML(pick, "48px", 70) + '<div style="display:flex;flex-direction:column;gap:2px"><span class="mu" style="font-size:12px">' + esc(t.pickResult) + '</span><span class="serif" style="font-size:19px;font-weight:600">' + esc(pick.title) + '</span><span class="mu" style="font-size:13px">' + esc(pick.author) + '</span></div></div><div class="grid2" style="gap:10px"><button type="button" class="btn" data-a="pick">' + esc(t.another) + '</button><button type="button" class="btn gold" data-a="startPick">' + esc(t.startReading) + '</button></div>';
@@ -429,15 +448,14 @@ function vHome(t, D) {
   h += '</section>';
   if (!S.books.length) h += emptyCard(t, t.emptyLibTitle, t.emptyLibBody);
   var reading = S.books.filter(function (b) { return b.status === "reading"; });
-  if (reading.length) { h += '<section class="col" style="gap:10px"><h2 class="h2">' + esc(t.readingNow) + '</h2>';
-    reading.forEach(function (b) { h += '<button type="button" class="card" data-a="open" data-v="' + b.id + '" style="flex-direction:row;align-items:center;gap:14px">' + coverHTML(b, "52px", 78) + '<span style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0"><span class="serif" style="font-size:17px;font-weight:600">' + esc(b.title) + '</span><span class="mu" style="font-size:13px">' + esc(b.author) + '</span><span style="height:5px;border-radius:3px;background:var(--ln);overflow:hidden"><span class="bar" style="display:block;height:100%;width:' + pct(b) + '%;background:var(--gold)"></span></span><span class="mu" style="font-size:12px">' + esc(progLine(t, b)) + '</span></span></button>'; });
-    h += '</section>'; }
-  var lin = S.loans.filter(function (l) { return l.dir === "in"; }).length;
-  if (lin) h += '<button type="button" class="card" data-a="go" data-v="loans" style="flex-direction:row;align-items:center;border-color:var(--gold)"><span style="color:var(--gold)">' + ico(IC.loans, 22, 2) + '</span><span style="font-size:14px;font-weight:700">' + esc(fmt(t.loanAlert, "n", lin)) + '</span></button>';
-  h += '<section class="card"><h2 class="h2">' + esc(t.quoteDay) + '</h2>';
-  if (S.quotes.length) { var q = S.quotes[Math.floor(D.now / DAY) % S.quotes.length]; h += '<p class="serif" style="margin:0;font-size:17px;font-style:italic;line-height:1.45">«' + esc(q.text) + '»</p><span class="mu" style="font-size:13px">' + esc(q.book) + '</span>'; }
-  else h += '<p class="mu" style="margin:0;font-size:14px">' + esc(t.noQuote) + '</p>';
-  return h + '</section></div>';
+  if (reading.length) {
+    var LIM = 2, show = S.readAll ? reading : reading.slice(0, LIM);
+    h += '<section class="col" style="gap:10px"><div class="row" style="justify-content:space-between"><h2 class="h2">' + esc(t.readingNow) + ' · ' + reading.length + '</h2></div>';
+    show.forEach(function (b) { h += '<button type="button" class="card pop" data-a="open" data-v="' + b.id + '" style="flex-direction:row;align-items:center;gap:14px">' + coverHTML(b, "52px", 78) + '<span style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0"><span class="serif" style="font-size:17px;font-weight:600">' + esc(b.title) + '</span><span class="mu" style="font-size:13px">' + esc(b.author) + '</span><span style="height:5px;border-radius:3px;background:var(--ln);overflow:hidden"><span class="bar" style="display:block;height:100%;width:' + pct(b) + '%;background:var(--gold)"></span></span><span class="mu" style="font-size:12px">' + esc(progLine(t, b)) + '</span></span></button>'; });
+    if (reading.length > LIM) h += '<button type="button" class="btn" data-a="readAll" aria-expanded="' + S.readAll + '">' + esc(S.readAll ? t.seeLess : fmt(t.seeAll, "n", reading.length)) + ' <span style="display:inline-block;transition:transform .3s;transform:rotate(' + (S.readAll ? 180 : 0) + 'deg)">⌄</span></button>';
+    h += '</section>';
+  }
+  return h + '</div>';
 }
 function vLibrary(t) {
   var f = S.filter, c = S.coll;
@@ -450,7 +468,7 @@ function vLibrary(t) {
   if (!S.books.length) return h + emptyCard(t, t.emptyLibTitle, t.emptyLibBody) + '</div>';
   if (!grid.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.noMatch) + '</p>';
   h += '<div class="grid3">';
-  grid.forEach(function (b) { h += '<button type="button" data-a="open" data-v="' + b.id + '" style="border:none;background:none;padding:0;text-align:left;display:flex;flex-direction:column;gap:5px">' + coverHTML(b, "100%", 150, 14) + '<span style="font-size:13px;font-weight:800;line-height:1.2">' + esc(b.title) + '</span><span class="mu" style="font-size:12px">' + esc(t.st[b.status]) + (b.reads >= 2 ? " · ×" + b.reads : "") + '</span></button>'; });
+  grid.forEach(function (b) { h += '<button type="button" data-a="open" data-v="' + b.id + '" style="border:none;background:none;padding:0;text-align:left;display:flex;flex-direction:column;gap:5px">' + coverHTML(b, "100%", 150, 14) + '<span style="font-size:13px;font-weight:800;line-height:1.2">' + esc(b.title) + '</span><span class="mu" style="font-size:12px">' + esc(t.st[b.status]) + (b.reads >= 2 ? " · ×" + b.reads : "") + (b.borrowed ? " · " + esc(t.borrowed) : "") + '</span></button>'; });
   h += '</div>';
   var ac = {}, stc = {}; S.books.forEach(function (b) { if (b.author) ac[b.author] = (ac[b.author] || 0) + 1; stc[b.style] = (stc[b.style] || 0) + 1; });
   var cols = []; Object.keys(ac).filter(function (a) { return ac[a] >= 2; }).sort(function (a, b) { return ac[b] - ac[a]; }).forEach(function (a) { cols.push(["author", a, a, t.byAuthor, ac[a]]); });
@@ -462,16 +480,31 @@ function vLibrary(t) {
 }
 function vAdd(t) {
   var F = S.f, h = '<div class="col"><h1 class="h1">' + esc(S.editId ? t.editTitle : t.addTitle) + '</h1><div class="row" style="align-items:stretch;gap:14px">';
-  h += '<label style="position:relative;width:110px;height:160px;flex-shrink:0;border-radius:6px 12px 12px 6px;border:2px dashed var(--ln);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;cursor:pointer;color:var(--mu);font-size:12px;font-weight:800;text-align:center;padding:8px">' +
-    (F.photo ? '<img src="' + esc(F.photo) + '" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' : "") + ico(IC.cam, 26) + '<span>' + esc(F.busy ? t.busy : t.takePhoto) + '</span><input id="photo" type="file" accept="image/*" aria-label="' + esc(t.photo) + '" style="position:absolute;width:1px;height:1px;opacity:0"></label>';
-  h += '<div style="flex:1;display:flex;flex-direction:column;gap:10px;min-width:0"><button type="button" class="btn" data-a="scan" style="justify-content:flex-start">' + ico(IC.bar, 18, 2) + esc(F.scanning ? t.closeCam : t.scan) + '</button>' +
-    '<label class="lab">' + esc(t.fTitle) + '<input class="in" type="text" data-f="f.title" value="' + esc(F.title) + '"></label></div></div>';
-  if (F.showIsbn) h += '<div class="card pop" style="gap:10px">' + (F.scanning ? '<video id="scanVideo" class="scanv" playsinline muted></video>' : "") + '<div class="row" style="gap:8px"><input class="in" type="text" inputmode="numeric" data-f="f.isbn" value="' + esc(F.isbn) + '" placeholder="' + esc(t.isbnPh) + '" aria-label="' + esc(t.isbn) + '"><button type="button" class="btn acc" data-a="lookup">' + esc(t.lookup) + '</button></div>' + (F.isbnMsg ? '<p class="mu" style="margin:0;font-size:13px">' + esc(F.isbnMsg) + '</p>' : "") + '</div>';
+  h += '<div style="position:relative;width:110px;height:160px;flex-shrink:0;border-radius:6px 12px 12px 6px;border:2px dashed var(--ln);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;color:var(--mu);font-size:12px;font-weight:800;text-align:center;padding:8px">' +
+    (F.photo ? '<img src="' + esc(F.photo) + '" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' : ico(IC.cam, 26) + '<span>' + esc(F.busy ? t.busy : t.photo) + '</span>') + '</div>';
+  h += '<div style="flex:1;display:flex;flex-direction:column;gap:8px;min-width:0">' +
+    '<label class="btn gold" style="position:relative;cursor:pointer;justify-content:flex-start">' + ico(IC.cam, 18, 2) + esc(t.camera) + '<input id="photoCam" type="file" accept="image/*" capture="environment" aria-label="' + esc(t.camera) + '" style="position:absolute;width:1px;height:1px;opacity:0"></label>' +
+    '<label class="btn" style="position:relative;cursor:pointer;justify-content:flex-start">' + ico("M4 5h16v14H4zM4 15l5-5 4 4 3-3 4 4M15 9h.01", 18, 2) + esc(t.gallery) + '<input id="photoGal" type="file" accept="image/*" aria-label="' + esc(t.gallery) + '" style="position:absolute;width:1px;height:1px;opacity:0"></label>' +
+    '<button type="button" class="btn" data-a="scan" style="justify-content:flex-start">' + ico(IC.bar, 18, 2) + esc(F.scanning ? t.closeCam : t.scan) + '</button></div></div>';
+  if (F.photoErr) h += '<p class="err">' + esc(F.photoErr) + '</p>';
+  if (F.showIsbn) {
+    h += '<div class="card pop" style="gap:10px">';
+    if (F.scanning) h += '<div style="position:relative"><video id="scanVideo" class="scanv" playsinline muted></video><div aria-hidden="true" style="position:absolute;left:12%;right:12%;top:30%;bottom:30%;border:2px solid var(--gold);border-radius:10px;box-shadow:0 0 0 999px rgba(0,0,0,.35)"></div></div><p class="mu" style="margin:0;font-size:12px">' + esc(t.scanHint) + '</p>';
+    h += '<label class="btn" style="position:relative;cursor:pointer">' + ico(IC.cam, 18, 2) + esc(t.scanPhoto) + '<input id="scanShot" type="file" accept="image/*" capture="environment" aria-label="' + esc(t.scanPhoto) + '" style="position:absolute;width:1px;height:1px;opacity:0"></label>';
+    h += '<div class="row" style="gap:8px"><input class="in" type="text" inputmode="numeric" data-f="f.isbn" value="' + esc(F.isbn) + '" placeholder="' + esc(t.isbnPh) + '" aria-label="' + esc(t.isbn) + '"><button type="button" class="btn acc" data-a="lookup">' + esc(t.lookup) + '</button></div>' + (F.isbnMsg ? '<p class="mu" style="margin:0;font-size:13px">' + esc(F.isbnMsg) + '</p>' : "") + '</div>';
+  }
+  h += '<label class="lab">' + esc(t.fTitle) + '<input class="in" type="text" data-f="f.title" value="' + esc(F.title) + '"></label>';
   if (F.err) h += '<p class="err" data-err="f">' + esc(t.needTitle) + '</p>';
   h += '<label class="lab">' + esc(t.fAuthor) + '<input class="in" type="text" data-f="f.author" value="' + esc(F.author) + '"></label>';
+  h += '<button type="button" class="btn" data-a="byTitle" style="align-self:flex-start">' + ico("M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4", 18, 2) + esc(t.byTitle) + '</button>';
+  if (!F.showIsbn && F.isbnMsg) h += '<p class="mu" style="margin:0;font-size:13px">' + esc(F.isbnMsg) + '</p>';
   h += '<div class="lab">' + esc(t.fStyle) + '<div class="wrapchips">'; SK.forEach(function (k) { h += chip(esc(t.styles[k]), F.style === k, "fstyle", k); }); h += '</div></div>';
   h += '<div class="lab">' + esc(t.fStatus) + '<div class="wrapchips">'; ["toread", "reading", "read"].forEach(function (k) { h += chip(esc(t.st[k]), F.status === k, "fstatus", k); }); h += '</div></div>';
-  h += '<div class="row" style="align-items:flex-end;gap:12px"><label class="lab" style="width:120px">' + esc(t.fPages) + '<input class="in" type="number" min="0" inputmode="numeric" data-f="f.pages" value="' + esc(F.pages) + '"></label><button type="button" class="card" data-a="fphys" aria-pressed="' + F.physical + '" style="flex:1;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 14px"><span style="font-size:14px;font-weight:700">' + esc(t.fPhysical) + '</span>' + sw(F.physical) + '</button></div>';
+  h += '<button type="button" class="card" data-a="floan" aria-pressed="' + F.loan + '" style="flex-direction:row;align-items:center;justify-content:space-between;padding:12px 16px"><span style="font-size:14px;font-weight:700">' + esc(t.loanQ) + '</span>' + sw(F.loan) + '</button>';
+  if (F.loan) h += '<div class="card pop" style="gap:10px"><label class="lab">' + esc(t.loanFromQ) + '<input class="in" type="text" data-f="f.loanFrom" value="' + esc(F.loanFrom) + '"></label><label class="lab">' + esc(t.loanAtQ) + '<input class="in" type="date" data-f="f.loanAt" value="' + esc(F.loanAt) + '"></label><label class="lab">' + esc(t.loanBackQ) + '<input class="in" type="date" data-f="f.loanBack" value="' + esc(F.loanBack) + '"></label></div>';
+  h += '<div class="row" style="align-items:flex-end;gap:12px"><label class="lab" style="width:120px">' + esc(t.fPages) + '<input class="in" type="number" min="0" inputmode="numeric" data-f="f.pages" value="' + esc(F.pages) + '"></label>';
+  if (!F.loan) h += '<button type="button" class="card" data-a="fphys" aria-pressed="' + F.physical + '" style="flex:1;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 14px"><span style="font-size:14px;font-weight:700">' + esc(t.fPhysical) + '</span>' + sw(F.physical) + '</button>';
+  h += '</div>';
   if (S.editId) return h + '<div class="grid2" style="gap:10px"><button type="button" class="btn" data-a="cancelEdit" style="min-height:50px">' + esc(t.cancel) + '</button><button type="button" class="btn gold" data-a="saveBook" style="min-height:50px;font-size:15px">' + esc(t.save) + '</button></div></div>';
   return h + '<button type="button" class="btn gold" data-a="saveBook" style="min-height:50px;font-size:15px">' + esc(t.save) + '</button></div>';
 }
@@ -546,9 +579,11 @@ function vShelf(t, D) {
   return h + '</div></div></div>';
 }
 function vQuotes(t) {
-  var h = '<div class="col"><h1 class="h1">' + esc(t.nav.quotes) + '</h1><div class="card"><label class="lab">' + esc(t.qText) + '<textarea class="in" data-f="q.text">' + esc(S.q.text) + '</textarea></label><label class="lab">' + esc(t.qBook) + '<input class="in" type="text" list="booklist" data-f="q.book" value="' + esc(S.q.book) + '"></label>' + bookList() + '' + (S.q.err ? '<p class="err" data-err="q">' + esc(t.needText) + '</p>' : "") + '<button type="button" class="btn gold" data-a="qsave">' + esc(t.addQuote) + '</button></div>';
+  var opts = '<option value="">' + esc(t.noBookOpt) + '</option>';
+  S.books.slice().sort(function (a, b) { return a.title.localeCompare(b.title); }).forEach(function (b) { opts += '<option value="' + esc(b.id) + '"' + (S.q.bookId === b.id ? " selected" : "") + '>' + esc(b.title + (b.author ? " · " + b.author : "")) + '</option>'; });
+  var h = '<div class="col"><h1 class="h1">' + esc(t.nav.quotes) + '</h1><div class="card"><label class="lab">' + esc(t.qText) + '<textarea class="in" data-f="q.text">' + esc(S.q.text) + '</textarea></label><label class="lab">' + esc(t.qBook) + '<select class="in" data-f="q.bookId">' + opts + '</select></label>' + (S.q.err ? '<p class="err" data-err="q">' + esc(t.needText) + '</p>' : "") + '<button type="button" class="btn gold" data-a="qsave">' + esc(t.addQuote) + '</button></div>';
   if (!S.quotes.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.emptyQ) + '</p>';
-  S.quotes.slice().reverse().forEach(function (q) { h += '<article class="card" style="gap:6px"><p class="serif" style="margin:0;font-size:17px;font-style:italic;line-height:1.45">«' + esc(q.text) + '»</p><div class="row" style="justify-content:space-between"><span class="mu" style="font-size:13px">' + esc(q.book) + '</span><button type="button" class="x" data-a="qdel" data-v="' + esc(q.id) + '" aria-label="' + esc(t.remove) + '">✕</button></div></article>'; });
+  S.quotes.slice().reverse().forEach(function (q) { var qb = q.bookId && byId(q.bookId); h += '<article class="card" style="gap:6px"><p class="serif" style="margin:0;font-size:17px;font-style:italic;line-height:1.45">«' + esc(q.text) + '»</p><div class="row" style="justify-content:space-between"><span class="mu" style="font-size:13px">' + esc(qb ? qb.title : q.book) + '</span><button type="button" class="x" data-a="qdel" data-v="' + esc(q.id) + '" aria-label="' + esc(t.remove) + '">✕</button></div></article>'; });
   return h + '</div>';
 }
 function bookList() { var h = '<datalist id="booklist">'; S.books.forEach(function (b) { h += '<option value="' + esc(b.title) + '">'; }); return h + '</datalist>'; }
@@ -560,10 +595,16 @@ function vWishes(t) {
 }
 function vLoans(t, D) {
   var Lf = S.l, h = '<div class="col"><h1 class="h1">' + esc(t.nav.loans) + '</h1><div class="grid2" style="gap:8px">' + chip(esc(t.tabIn), Lf.tab === "in", "ltab", "in") + chip(esc(t.tabOut), Lf.tab === "out", "ltab", "out") + '</div>';
-  h += '<div class="card"><label class="lab">' + esc(t.lTitle) + '<input class="in" type="text" list="booklist" data-f="l.title" value="' + esc(Lf.title) + '"></label>' + bookList() + '<label class="lab">' + esc(Lf.tab === "in" ? t.lFrom : t.lTo) + '<input class="in" type="text" data-f="l.person" value="' + esc(Lf.person) + '"></label>' + (Lf.err ? '<p class="err" data-err="l">' + esc(t.needLoan) + '</p>' : "") + '<button type="button" class="btn gold" data-a="lsave">' + esc(t.addLoan) + '</button></div>';
-  var list = S.loans.filter(function (l) { return l.dir === Lf.tab; });
-  if (!list.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.emptyL) + '</p>';
-  list.forEach(function (l) { var d = Math.floor((D.now - l.at) / DAY); h += '<article class="card" style="flex-direction:row;align-items:center;justify-content:space-between"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="serif" style="font-size:17px;font-weight:600">' + esc(l.title) + '</span><span class="mu" style="font-size:13px">' + esc((l.dir === "in" ? t.from : t.to) + " " + l.person + " · " + fmt(t.daysAgo, "d", d)) + '</span></span><button type="button" class="btn" data-a="ldone" data-v="' + l.id + '" style="flex-shrink:0">' + esc(t.returned) + '</button></article>'; });
+  h += '<div class="card"><label class="lab">' + esc(t.lTitle) + '<input class="in" type="text" list="booklist" data-f="l.title" value="' + esc(Lf.title) + '"></label>' + bookList() + '<label class="lab">' + esc(Lf.tab === "in" ? t.lFrom : t.lTo) + '<input class="in" type="text" data-f="l.person" value="' + esc(Lf.person) + '"></label><label class="lab">' + esc(t.loanDate) + '<input class="in" type="date" data-f="l.at" value="' + esc(Lf.at) + '"></label>' + (Lf.err ? '<p class="err" data-err="l">' + esc(t.needLoan) + '</p>' : "") + '<button type="button" class="btn gold" data-a="lsave">' + esc(t.addLoan) + '</button></div>';
+  var all = S.loans.filter(function (l) { return l.dir === Lf.tab; }).sort(function (a, b) { return b.at - a.at; });
+  var open = all.filter(function (l) { return !l.returnedAt; }), done = all.filter(function (l) { return l.returnedAt; });
+  if (!open.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.emptyL) + '</p>';
+  open.forEach(function (l) { var d = Math.max(0, Math.floor((D.now - l.at) / DAY));
+    h += '<article class="card"><div class="row" style="justify-content:space-between;align-items:flex-start"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="serif" style="font-size:17px;font-weight:600">' + esc(l.title) + '</span><span class="mu" style="font-size:13px">' + esc((l.dir === "in" ? t.from : t.to) + " " + (l.person || "—") + " · " + fmt(t.daysAgo, "d", d)) + '</span></span><button type="button" class="btn acc" data-a="ldone" data-v="' + l.id + '" style="flex-shrink:0">' + esc(t.returned) + '</button></div>' +
+      '<label class="lab" style="font-size:12px">' + esc(t.loanDate) + '<input class="in" type="date" data-f="loanat:' + l.id + '" value="' + isoDay(l.at) + '"></label></article>'; });
+  if (done.length) { h += '<h2 class="h2" style="margin-top:8px">' + esc(t.history) + '</h2>';
+    done.forEach(function (l) { h += '<article class="card" style="gap:8px"><div class="row" style="justify-content:space-between;align-items:flex-start"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="serif" style="font-size:16px;font-weight:600">' + esc(l.title) + '</span><span class="mu" style="font-size:13px">' + esc((l.dir === "in" ? t.from : t.to) + " " + (l.person || "—") + " · " + fmtDay(l.at) + " → " + fmtDay(l.returnedAt)) + '</span></span><button type="button" class="x" data-a="ldel" data-v="' + l.id + '" aria-label="' + esc(t.remove) + '">✕</button></div>' +
+      '<div class="grid2" style="gap:8px"><label class="lab" style="font-size:12px">' + esc(t.loanDate) + '<input class="in" type="date" data-f="loanat:' + l.id + '" value="' + isoDay(l.at) + '"></label><label class="lab" style="font-size:12px">' + esc(t.returnedDate) + '<input class="in" type="date" data-f="loanret:' + l.id + '" value="' + isoDay(l.returnedAt) + '"></label></div></article>'; }); }
   return h + '</div>';
 }
 function vSettings(t) {
@@ -580,9 +621,11 @@ function vBook(t, D) {
   var h = '<div class="col"><div class="row" style="justify-content:space-between"><button type="button" class="btn" data-a="back" style="border:none;padding:0 8px 0 0">' + ico(IC.back, 20, 2) + esc(t.back) + '</button><button type="button" class="btn" data-a="edit">' + esc(t.edit) + '</button></div>';
   h += '<div class="row" style="align-items:flex-end;gap:16px"><div class="float">' + coverHTML(b, "116px", 172, 17) + '</div><div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--sf2);color:var(--ac)">' + esc(t.styles[b.style]) + '</span><h1 class="h1" style="font-size:25px">' + esc(b.title) + '</h1><span class="mu" style="font-size:14px">' + esc(b.author) + '</span><span style="font-size:13px;color:var(--gold);font-weight:700">' + esc(D.pos[b.id] ? fmt(t.shelfLine, "n", D.pos[b.id]) : t.notShelf) + '</span></div></div>';
   h += '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">'; ["toread", "reading", "read"].forEach(function (k) { h += chip(esc(t.st[k]), b.status === k, "status", k, ' style="min-height:44px"'); }); h += '</div>';
-  h += '<button type="button" class="card" data-a="curphys" aria-pressed="' + !!b.physical + '" style="flex-direction:row;align-items:center;justify-content:space-between;padding:12px 16px"><span style="font-size:14px;font-weight:700">' + esc(t.fPhysical) + '</span>' + sw(b.physical) + '</button>';
+  var ln = loanOf(b.id);
+  if (ln) h += '<button type="button" class="card" data-a="go" data-v="loans" style="flex-direction:row;align-items:center;gap:12px;border-color:var(--gold)"><span style="color:var(--gold)">' + ico(IC.loans, 22, 2) + '</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:700">' + esc(t.lentBy + " " + (ln.person || "—") + " " + t.lentOn + " " + fmtDay(ln.at)) + '</span>' + (ln.returnedAt ? '<span class="mu" style="font-size:13px">' + esc(t.returnedOn + " " + fmtDay(ln.returnedAt)) + '</span>' : "") + '</span></button>';
+  else h += '<button type="button" class="card" data-a="curphys" aria-pressed="' + !!b.physical + '" style="flex-direction:row;align-items:center;justify-content:space-between;padding:12px 16px"><span style="font-size:14px;font-weight:700">' + esc(t.fPhysical) + '</span>' + sw(b.physical) + '</button>';
   if (b.pages > 0) h += '<section class="card"><div class="row" style="justify-content:space-between;align-items:baseline"><h2 class="h2">' + esc(t.progress) + '</h2><span class="serif" style="font-size:24px">' + pct(b) + '%</span></div><div style="height:8px;border-radius:4px;background:var(--ln);overflow:hidden"><div class="bar" style="height:100%;width:' + pct(b) + '%;background:var(--gold)"></div></div><div class="row" style="justify-content:space-between"><span class="mu" style="font-size:13px">' + esc(progLine(t, b)) + '</span><span class="row" style="gap:8px"><button type="button" class="btn" data-a="page" data-v="-10">−10</button><button type="button" class="btn gold" data-a="page" data-v="10">+10</button></span></div></section>';
-  h += '<section class="card" style="flex-direction:row;align-items:center;justify-content:space-between"><span style="font-size:15px;font-weight:700">' + esc(b.reads > 0 ? fmt(t.reads, "n", b.reads) : t.readsZero) + '</span><button type="button" class="btn" data-a="reread">' + esc(t.reread) + '</button></section>';
+  h += '<section class="card" style="flex-direction:row;align-items:center;justify-content:space-between"><span style="font-size:15px;font-weight:700">' + esc(b.reads > 1 ? fmt(t.reads, "n", b.reads) : b.reads === 1 ? t.readsOne : t.readsZero) + '</span><span class="row" style="gap:8px"><button type="button" class="btn" data-a="unread" aria-label="' + esc(t.minusRead) + '" style="width:44px;padding:0;font-size:20px' + (b.reads > 0 ? '"' : ';opacity:.4" disabled') + '>−</button><button type="button" class="btn gold" data-a="reread" aria-label="' + esc(t.plusRead) + '" style="width:44px;padding:0;font-size:20px">+</button></span></section>';
   h += '<section class="card"><h2 class="h2">' + esc(t.rating) + '</h2><div class="row" style="gap:4px">';
   for (var n = 1; n <= 5; n++) h += '<button type="button" data-a="paw" data-v="' + n + '" aria-label="' + esc(fmt(t.paw, "n", n)) + '" style="width:44px;height:44px;border:none;background:transparent;padding:0"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" style="fill:' + (n <= (b.rating || 0) ? "#E8B45A" : "var(--ln)") + '"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><circle cx="6" cy="10" r="2.2"/><circle cx="10" cy="6.5" r="2.2"/><circle cx="14" cy="6.5" r="2.2"/><circle cx="18" cy="10" r="2.2"/></svg></button>';
   h += '</div></section>';
@@ -619,6 +662,12 @@ function go(sc) {
   render(); var mm = $app.querySelector("main"); if (mm) mm.scrollTop = 0;
 }
 function patchBook(id, p) { S.books = S.books.map(function (b) { return b.id === id ? Object.assign({}, b, p) : b; }); touchBook(id); }
+function syncLoan(bookId, title, F) {
+  var ex = loanOf(bookId);
+  if (!F.loan) { if (ex) { S.loans = S.loans.filter(function (l) { return l.id !== ex.id; }); touchMeta(); } return; }
+  var rec = { id: ex ? ex.id : uid(), bookId: bookId, title: title, person: F.loanFrom.trim(), dir: "in", at: fromIso(F.loanAt) || Date.now(), returnedAt: fromIso(F.loanBack) || null };
+  S.loans = ex ? S.loans.map(function (l) { return l.id === ex.id ? rec : l; }) : S.loans.concat([rec]); touchMeta();
+}
 function finishPatch(b, extra) { return Object.assign({ status: "read", reads: (b.reads || 0) + 1, finishes: (b.finishes || []).concat([Date.now()]) }, extra || {}); }
 var timerIv = null;
 var AC = null, SN = {};
@@ -656,44 +705,85 @@ function tick() { if (!S.r.running) return; S.r.timer = Math.floor((Date.now() -
 document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible" && S.r.running) { wake(true); tick(); } });
 var scanStream = null, scanLoop = null;
 function stopScan() { clearTimeout(scanLoop); if (scanStream) { scanStream.getTracks().forEach(function (tr) { tr.stop(); }); scanStream = null; } S.f.scanning = false; }
+function validIsbn(raw) {
+  var s = String(raw || "").replace(/[^0-9Xx]/g, "").toUpperCase(), i, sum = 0;
+  if (s.length === 13 && /^97[89]\d{10}$/.test(s)) { for (i = 0; i < 12; i++) sum += (+s[i]) * (i % 2 ? 3 : 1); return (10 - sum % 10) % 10 === +s[12] ? s : null; }
+  if (s.length === 10 && /^\d{9}[\dX]$/.test(s)) { for (i = 0; i < 10; i++) sum += (s[i] === "X" ? 10 : +s[i]) * (10 - i); return sum % 11 === 0 ? s : null; }
+  return null;
+}
+function detector() { try { return ("BarcodeDetector" in window) ? new window.BarcodeDetector({ formats: ["ean_13", "ean_8", "upc_a"] }) : null; } catch (e) { return null; } }
 function startScan() {
-  var t = T(); S.f.showIsbn = true;
-  if (!("BarcodeDetector" in window) || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { S.f.isbnMsg = t.camNo; render(); return; }
-  var det; try { det = new window.BarcodeDetector({ formats: ["ean_13", "ean_8", "upc_a"] }); } catch (e) { S.f.isbnMsg = t.camNo; render(); return; }
-  S.f.scanning = true; S.f.isbnMsg = t.scanning; render();
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
+  var t = T(), det = detector(); S.f.showIsbn = true;
+  if (!det || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { S.f.isbnMsg = t.camNo; render(); return; }
+  S.f.scanning = true; S.f.isbnMsg = ""; render();
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 }, height: { ideal: 1080 } } }).then(function (stream) {
     if (!S.f.scanning) { stream.getTracks().forEach(function (tr) { tr.stop(); }); return; }
-    scanStream = stream; var v = document.getElementById("scanVideo"); if (v) { v.srcObject = stream; v.play().catch(function () {}); }
+    scanStream = stream;
+    try { var track = stream.getVideoTracks()[0], caps = track.getCapabilities ? track.getCapabilities() : {}; if (caps.focusMode && caps.focusMode.indexOf("continuous") >= 0) track.applyConstraints({ advanced: [{ focusMode: "continuous" }] }).catch(function () {}); } catch (e) {}
+    var v = document.getElementById("scanVideo"); if (v) { v.srcObject = stream; v.play().catch(function () {}); }
+    var last = null;
     var loop = function () { if (!scanStream) return; var vid = document.getElementById("scanVideo"); if (!vid || vid.readyState < 2) { scanLoop = setTimeout(loop, 300); return; }
-      det.detect(vid).then(function (codes) { if (codes && codes.length) { var code = codes[0].rawValue; stopScan(); S.f.isbn = code; render(); lookup(code); } else scanLoop = setTimeout(loop, 250); }).catch(function () { scanLoop = setTimeout(loop, 400); }); };
+      det.detect(vid).then(function (codes) {
+        var ok = null; (codes || []).forEach(function (c) { var x = validIsbn(c.rawValue); if (x) ok = x; });
+        if (ok && ok === last) { stopScan(); S.f.isbn = ok; render(); lookup(ok); return; }
+        last = ok; scanLoop = setTimeout(loop, 200);
+      }).catch(function () { scanLoop = setTimeout(loop, 400); }); };
     loop();
   }).catch(function () { stopScan(); S.f.isbnMsg = t.camNo; render(); });
 }
+function scanFromPhoto(file) {
+  var t = T(), det = detector(); S.f.showIsbn = true;
+  if (!det || !window.createImageBitmap) { S.f.isbnMsg = t.camNo; render(); return; }
+  S.f.isbnMsg = t.looking; render();
+  createImageBitmap(file).then(function (bm) { return det.detect(bm); }).then(function (codes) {
+    var ok = null; (codes || []).forEach(function (c) { var x = validIsbn(c.rawValue); if (x) ok = x; });
+    if (!ok) { S.f.isbnMsg = t.badIsbn; render(); return; }
+    S.f.isbn = ok; render(); lookup(ok);
+  }).catch(function () { S.f.isbnMsg = t.photoErr; render(); });
+}
 function guessStyle(cats, cur) {
   var c = String(cats || "").toLowerCase();
+  if (/psychoanal|psicoan|freud|lacan|jung/.test(c)) return "psycho";
+  if (/feminis|women|mujer|gender|género/.test(c)) return "feminism";
+  if (/financ|econom|invest|money|dinero|business|negocio/.test(c)) return "finance";
   if (/horror|terror|ghost|occult|supernatural/.test(c)) return "horror";
   if (/self-help|personal|psycholog|spiritual|motivation|autoayuda|superaci|crecimiento/.test(c)) return "growth";
-  if (/poetry|poes/.test(c)) return "poetry";
   if (/fantasy|fantas/.test(c)) return "fantasy";
   if (/essay|philosoph|history|science|biograph|ensayo|filosof|historia/.test(c)) return "essay";
   if (/fiction|ficci|novel/.test(c)) return "novel";
   return cur;
 }
+function fillFound(v, isbn) {
+  var t = T(), F = S.f;
+  if (v.title) F.title = v.title; if (v.author) F.author = v.author; if (v.pages) F.pages = String(v.pages);
+  F.style = guessStyle(v.cats, F.style); if (!F.photo && v.cover) F.photo = String(v.cover).replace(/^http:/, "https:");
+  if (isbn) F.isbn = isbn; F.isbnMsg = t.found; if (S.screen === "add") render();
+}
+function gb(q) { return fetch("https://www.googleapis.com/books/v1/volumes?q=" + encodeURIComponent(q) + "&maxResults=5").then(function (r) { return r.json(); }).then(function (j) {
+  var v = j && j.items && j.items[0] && j.items[0].volumeInfo; if (!v) throw 0;
+  return { title: v.title, author: (v.authors || []).join(", "), pages: v.pageCount, cats: (v.categories || []).join(" "), cover: v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail) }; }); }
+function ol(isbn) { return fetch("https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&format=json&jscmd=data").then(function (r) { return r.json(); }).then(function (j) {
+  var v = j && j["ISBN:" + isbn]; if (!v) throw 0;
+  return { title: v.title, author: (v.authors || []).map(function (a) { return a.name; }).join(", "), pages: v.number_of_pages, cats: (v.subjects || []).map(function (x) { return x.name; }).join(" "), cover: v.cover && (v.cover.medium || v.cover.large) }; }); }
+function isbn10(s) { if (s.length !== 13 || s.indexOf("978") !== 0) return null; var b = s.slice(3, 12), sum = 0; for (var i = 0; i < 9; i++) sum += (+b[i]) * (10 - i); var c = (11 - sum % 11) % 11; return b + (c === 10 ? "X" : c); }
 function lookup(raw) {
-  var t = T(), isbn = String(raw || "").replace(/[^0-9Xx]/g, "");
-  if (isbn.length < 10) { S.f.isbnMsg = t.notFound; render(); return; }
+  var t = T(), isbn = validIsbn(raw); S.f.showIsbn = true;
+  if (!isbn) { S.f.isbnMsg = t.badIsbn; render(); return; }
   if (navigator.onLine === false) { S.f.isbnMsg = t.offline; render(); return; }
   S.f.isbnMsg = t.looking; render();
-  var fill = function (v) { var F = S.f; if (v.title) F.title = v.title; if (v.author) F.author = v.author; if (v.pages) F.pages = String(v.pages); F.style = guessStyle(v.cats, F.style); if (!F.photo && v.cover) F.photo = String(v.cover).replace(/^http:/, "https:"); F.isbn = isbn; F.isbnMsg = t.found; if (S.screen === "add") render(); };
-  fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn).then(function (r) { return r.json(); }).then(function (j) {
-    var v = j && j.items && j.items[0] && j.items[0].volumeInfo; if (!v) throw 0;
-    fill({ title: v.title, author: (v.authors || []).join(", "), pages: v.pageCount, cats: (v.categories || []).join(" "), cover: v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail) });
-  }).catch(function () {
-    return fetch("https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&format=json&jscmd=data").then(function (r) { return r.json(); }).then(function (j) {
-      var v = j && j["ISBN:" + isbn]; if (!v) throw 0;
-      fill({ title: v.title, author: (v.authors || []).map(function (a) { return a.name; }).join(", "), pages: v.number_of_pages, cats: (v.subjects || []).map(function (x) { return x.name; }).join(" "), cover: v.cover && (v.cover.medium || v.cover.large) });
-    });
-  }).catch(function () { S.f.isbnMsg = navigator.onLine === false ? t.offline : t.notFound; if (S.screen === "add") render(); });
+  var i10 = isbn10(isbn);
+  gb("isbn:" + isbn).catch(function () { return ol(isbn); }).catch(function () { if (i10) return gb("isbn:" + i10); throw 0; }).catch(function () { return gb(isbn); })
+    .then(function (v) { fillFound(v, isbn); })
+    .catch(function () { S.f.isbnMsg = navigator.onLine === false ? t.offline : t.notFound; if (S.screen === "add") render(); });
+}
+function lookupTitle() {
+  var t = T(), F = S.f, title = F.title.trim();
+  if (!title) { F.isbnMsg = t.needTitleSearch; render(); return; }
+  if (navigator.onLine === false) { F.isbnMsg = t.offline; render(); return; }
+  F.isbnMsg = t.looking; render();
+  gb('intitle:"' + title + '"' + (F.author.trim() ? ' inauthor:"' + F.author.trim() + '"' : "")).catch(function () { return gb(title + " " + F.author); })
+    .then(function (v) { v.title = null; fillFound(v, null); })
+    .catch(function () { S.f.isbnMsg = t.notFound; if (S.screen === "add") render(); });
 }
 var deferredPrompt = null;
 window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferredPrompt = e; });
@@ -709,9 +799,16 @@ function act(a, v) {
     case "lang": S.lang = v; touchMeta(); render(); return;
     case "mood": S.mood = v; S.pickId = null; S.pickEmpty = false; render(); return;
     case "recap": S.showRecap = v === "open"; if (S.screen !== "stats" && S.showRecap) { go("stats"); S.showRecap = true; render(); } else render(); return;
-    case "edit": if (!b) return; stopScan(); S.editId = b.id; S.f = Object.assign(blankForm(b.style), { title: b.title, author: b.author || "", status: b.status, physical: !!b.physical, pages: b.pages ? String(b.pages) : "", photo: b.cover || null, isbn: b.isbn || "" }); S.screen = "add"; render(); return;
+    case "edit": if (!b) return; stopScan(); S.editId = b.id; var eln = loanOf(b.id);
+      S.f = Object.assign(blankForm(b.style), { title: b.title, author: b.author || "", status: b.status, physical: !!b.physical, pages: b.pages ? String(b.pages) : "", photo: b.cover || null, isbn: b.isbn || "", loan: !!eln, loanFrom: eln ? eln.person : "", loanAt: eln ? isoDay(eln.at) : isoDay(Date.now()), loanBack: eln && eln.returnedAt ? isoDay(eln.returnedAt) : "" });
+      S.screen = "add"; render(); return;
     case "cancelEdit": var cid = S.editId; S.editId = null; stopScan(); S.f = blankForm(S.f.style); S.bookId = cid; S.screen = byId(cid) ? "book" : "library"; render(); return;
     case "lookup": lookup(S.f.isbn); return;
+    case "byTitle": lookupTitle(); return;
+    case "readAll": S.readAll = !S.readAll; render(); return;
+    case "floan": S.f.loan = !S.f.loan; render(); return;
+    case "unread": if (b && b.reads > 0) { var fin = (b.finishes || []).slice(0, -1), up = { reads: b.reads - 1, finishes: fin }; if (up.reads === 0 && b.status === "read") up.status = "reading"; patchBook(b.id, up); render(); } return;
+    case "ldel": S.loans = S.loans.filter(function (x) { return x.id !== v; }); touchMeta(); render(); return;
     case "qdel": S.quotes = S.quotes.filter(function (x) { return x.id !== v; }); touchMeta(); render(); return;
     case "wdel": S.wishes = S.wishes.filter(function (x) { return x.id !== v; }); touchMeta(); render(); return;
     case "pick": var pool = S.books.filter(function (x) { return x.status === "toread" && (S.mood === "any" || x.style === S.mood); });
@@ -730,12 +827,12 @@ function act(a, v) {
     case "saveBook": var F = S.f, title = F.title.trim(); if (!title) { F.err = true; render(); return; }
       var pages = Math.max(0, Math.round(Number(F.pages) || 0)), isRead = F.status === "read"; stopScan();
       if (S.editId) { var eb = byId(S.editId);
-        if (eb) { var ep = { title: title, author: F.author.trim(), style: F.style, physical: F.physical, pages: pages, cover: F.photo, isbn: F.isbn || "" };
+        if (eb) { var ep = { title: title, author: F.author.trim(), style: F.style, physical: F.loan ? false : F.physical, borrowed: F.loan, pages: pages, cover: F.photo, isbn: F.isbn || "" }; syncLoan(eb.id, title, F);
           if (F.status !== eb.status) { if (F.status === "read") Object.assign(ep, finishPatch(eb, pages ? { page: pages } : null)); else ep.status = F.status; }
           if (pages && (eb.page || 0) > pages) ep.page = pages; patchBook(eb.id, ep); }
         var eid = S.editId; S.editId = null; S.f = blankForm(F.style); S.bookId = eid; S.screen = "book"; render(); return; }
-      var nb = { id: uid(), title: title, author: F.author.trim(), style: F.style, status: F.status, physical: F.physical, pages: pages, page: isRead ? pages : 0, cover: F.photo, isbn: F.isbn || "", reads: isRead ? 1 : 0, finishes: isRead ? [Date.now()] : [], rating: 0, fear: 0, vidas: {}, note: "", created: Date.now() };
-      S.books = S.books.concat([nb]); touchBook(nb.id);
+      var nb = { id: uid(), title: title, author: F.author.trim(), style: F.style, status: F.status, physical: F.loan ? false : F.physical, borrowed: F.loan, pages: pages, page: isRead ? pages : 0, cover: F.photo, isbn: F.isbn || "", reads: isRead ? 1 : 0, finishes: isRead ? [Date.now()] : [], rating: 0, fear: 0, vidas: {}, note: "", created: Date.now() };
+      S.books = S.books.concat([nb]); touchBook(nb.id); syncLoan(nb.id, title, F);
       S.placedNext = nb.physical ? fmt(t.placed, "n", derive().pos[nb.id]) : "";
       S.f = blankForm(F.style);
       S.filter = "all"; S.coll = null; go("library"); return;
@@ -762,16 +859,17 @@ function act(a, v) {
         var p2 = { page: np2 }; if (bk.status === "toread") p2.status = "reading"; if (bk.pages && np2 >= bk.pages && bk.status !== "read") p2 = finishPatch(bk, { page: np2 }); patchBook(bk.id, p2); }
       S.sessions = S.sessions.concat([{ mins: Math.max(1, Math.round(R.timer / 60)), pages: pr, vidas: R.vidas, at: Date.now(), bookId: R.book || null }]);
       S.r = { running: false, after: false, timer: 0, startAt: 0, book: R.book, page: "", vidas: {} }; touchMeta(); render(); return;
-    case "qsave": if (!S.q.text.trim()) { S.q.err = true; render(); return; } var qb = S.q.book.trim(), qm = S.books.filter(function (x) { return qb && x.title.toLowerCase() === qb.toLowerCase(); })[0];
-      S.quotes = S.quotes.concat([{ id: uid(), text: S.q.text.trim(), book: qm ? qm.title : qb, bookId: qm ? qm.id : null }]); S.q = { text: "", book: "", err: false }; touchMeta(); render(); return;
+    case "qsave": if (!S.q.text.trim()) { S.q.err = true; render(); return; } var qm = S.q.bookId ? byId(S.q.bookId) : null;
+      S.quotes = S.quotes.concat([{ id: uid(), text: S.q.text.trim(), book: qm ? qm.title : "", bookId: qm ? qm.id : null }]); S.q = { text: "", bookId: S.q.bookId, err: false }; touchMeta(); render(); return;
     case "wsave": if (!S.w.title.trim()) { S.w.err = true; render(); return; } S.wishes = S.wishes.concat([{ id: uid(), title: S.w.title.trim(), author: S.w.author.trim(), where: S.w.where.trim() }]); S.w = { title: "", author: "", where: "", err: false }; touchMeta(); render(); return;
     case "wgot": var w = S.wishes.filter(function (x) { return x.id === v; })[0]; if (!w) return;
       var wb = { id: uid(), title: w.title, author: w.author, style: "other", status: "toread", physical: true, pages: 0, page: 0, cover: null, reads: 0, finishes: [], rating: 0, fear: 0, vidas: {}, note: "", created: Date.now() };
       S.wishes = S.wishes.filter(function (x) { return x.id !== v; }); S.books = S.books.concat([wb]); touchBook(wb.id); touchMeta(); render(); return;
     case "ltab": S.l.tab = v; S.l.err = false; render(); return;
     case "lsave": if (!S.l.title.trim() || !S.l.person.trim()) { S.l.err = true; render(); return; }
-      S.loans = S.loans.concat([{ id: uid(), title: S.l.title.trim(), person: S.l.person.trim(), dir: S.l.tab, at: Date.now() }]); S.l.title = ""; S.l.person = ""; S.l.err = false; touchMeta(); render(); return;
-    case "ldone": S.loans = S.loans.filter(function (x) { return x.id !== v; }); touchMeta(); render(); return;
+      var lt = S.l.title.trim(), lb = S.books.filter(function (x) { return x.title.toLowerCase() === lt.toLowerCase(); })[0];
+      S.loans = S.loans.concat([{ id: uid(), title: lb ? lb.title : lt, bookId: lb && S.l.tab === "in" ? lb.id : null, person: S.l.person.trim(), dir: S.l.tab, at: fromIso(S.l.at) || Date.now(), returnedAt: null }]); S.l.title = ""; S.l.person = ""; S.l.at = isoDay(Date.now()); S.l.err = false; touchMeta(); render(); return;
+    case "ldone": S.loans = S.loans.map(function (x) { return x.id === v ? Object.assign({}, x, { returnedAt: Date.now() }) : x; }); touchMeta(); render(); return;
     case "shelf": S.shelfSel = Number(v); S.zPage = 0; render(); return;
     case "zprev": D = derive(); var nS = Math.ceil(D.phys.length / 25); if (S.zPage > 0) S.zPage--; else if (S.shelfSel > 0) { S.shelfSel--; S.zPage = 2; } render(); return;
     case "znext": D = derive(); var tot = D.phys.length, nSh = Math.ceil(tot / 25), inS = Math.min(25, tot - S.shelfSel * 25), zP = Math.ceil(inS / 10);
@@ -795,25 +893,29 @@ function act(a, v) {
 function setField(path, val) {
   if (path === "note") { var b = byId(S.bookId); if (b) { b.note = val; touchBook(b.id); } return; }
   if (path === "bq" || path === "find") { S[path] = val; if (path === "find" && S.findErr) { S.findErr = ""; rmErr("find"); } return; }
+  if (path.indexOf("loanat:") === 0 || path.indexOf("loanret:") === 0) { var id = path.split(":")[1], ts = fromIso(val); if (!ts) return;
+    S.loans = S.loans.map(function (l) { if (l.id !== id) return l; var o = Object.assign({}, l); if (path.indexOf("loanat:") === 0) o.at = ts; else o.returnedAt = ts; return o; }); touchMeta(); return; }
   var p = path.split("."); S[p[0]][p[1]] = val;
   if (S[p[0]].err) { S[p[0]].err = false; rmErr(p[0]); }
 }
 function rmErr(k) { var el = $app.querySelector('[data-err="' + k + '"]'); if (el) el.remove(); }
 function readAsDataURL(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = rej; r.readAsDataURL(file); }); }
 function compress(file) {
-  return readAsDataURL(file).then(function (src) { return new Promise(function (res, rej) {
-    var img = new Image(); img.onload = function () {
-      var sc = Math.min(1, 520 / Math.max(img.width, img.height)), c = document.createElement("canvas");
-      c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc); c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
-      c.toBlob(function (bl) { if (bl) res({ blob: bl, url: c.toDataURL("image/jpeg", 0.78) }); else rej(); }, "image/jpeg", 0.78);
-    }; img.onerror = rej; img.src = src; }); });
+  var draw = function (src, w, h) { return new Promise(function (res, rej) {
+    var sc = Math.min(1, 520 / Math.max(w, h)), c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w * sc)); c.height = Math.max(1, Math.round(h * sc));
+    c.getContext("2d").drawImage(src, 0, 0, c.width, c.height);
+    var url = c.toDataURL("image/jpeg", 0.8);
+    if (c.toBlob) c.toBlob(function (bl) { res({ blob: bl, url: url }); }, "image/jpeg", 0.8); else res({ blob: null, url: url }); }); };
+  var viaImg = function () { return readAsDataURL(file).then(function (src) { return new Promise(function (res, rej) { var img = new Image(); img.onload = function () { draw(img, img.naturalWidth, img.naturalHeight).then(res, rej); }; img.onerror = rej; img.src = src; }); }); };
+  if (window.createImageBitmap) return createImageBitmap(file, { imageOrientation: "from-image" }).then(function (bm) { return draw(bm, bm.width, bm.height); }).catch(viaImg);
+  return viaImg();
 }
 function handlePhoto(file) {
-  S.f.busy = true; render();
+  var t = T(); S.f.busy = true; S.f.photoErr = ""; render();
   compress(file).then(function (r) {
-    if (!ASSETS) return r.url;
+    if (!ASSETS || !r.blob) return r.url;
     return ASSETS.upload(r.blob, { type: "image/jpeg" }).then(function (u) { return u.url; }).catch(function () { return r.url; });
-  }).then(function (url) { S.f.photo = url; }).catch(function () {}).then(function () { S.f.busy = false; if (S.screen === "add") render(); });
+  }).then(function (url) { S.f.photo = url; }).catch(function () { S.f.photoErr = t.photoErr; }).then(function () { S.f.busy = false; if (S.screen === "add") render(); });
 }
 function doImport(file) {
   var t = T(); var r = new FileReader();
@@ -824,7 +926,7 @@ function doImport(file) {
 }
 $app.addEventListener("click", function (e) { var el = e.target.closest("[data-a]"); if (el && $app.contains(el)) act(el.getAttribute("data-a"), el.getAttribute("data-v")); });
 $app.addEventListener("input", function (e) { var f = e.target.getAttribute && e.target.getAttribute("data-f"); if (f) setField(f, e.target.value); });
-$app.addEventListener("change", function (e) { var el = e.target; if (!el.files || !el.files[0]) return; if (el.id === "photo") handlePhoto(el.files[0]); else if (el.id === "importFile") doImport(el.files[0]); });
+$app.addEventListener("change", function (e) { var el = e.target; if (!el.files || !el.files[0]) return; var f = el.files[0]; el.value = ""; if (el.id === "photoCam" || el.id === "photoGal") handlePhoto(f); else if (el.id === "scanShot") scanFromPhoto(f); else if (el.id === "importFile") doImport(f); });
 $app.addEventListener("keydown", function (e) { if (e.key === "Enter" && e.target.getAttribute && e.target.getAttribute("data-f") === "find") act("find"); });
 
 buildDecor(); render();

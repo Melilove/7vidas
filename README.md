@@ -2,7 +2,7 @@
 
 *Siete vidas en cada página.*
 
-Creada por melitalove 📚 para melitalove · versión 1.1.1
+Creada por melitalove 📚 para melitalove · versión 1.2.0
 
 7 Vidas es mi biblioteca personal: una app para registrar mis libros, mis lecturas y todo lo que cada libro me deja. Frida y Lina, mis gatas, me acompañan en cada pantalla.
 
@@ -11,12 +11,15 @@ Creada por melitalove 📚 para melitalove · versión 1.1.1
 - **Guarida:** lo que estoy leyendo, avisos de préstamos, la frase del día y un cielo que suma una estrella por cada libro terminado (la dorada es la de Mai).
 - **¿Qué leo ahora?:** Frida y Lina sortean un libro por leer, con filtro de ánimo (miedo o crecer).
 - **Biblioteca:** portadas con mis fotos, filtros (físicos, leyendo, leídos, por leer, releídos) y colecciones automáticas por autor y estilo.
-- **Agregar:** foto de portada, escaneo del código de barras o ISBN escrito, que completa título, autor, páginas y estilo.
-- **Ficha del libro:** estado, progreso, relecturas, huellitas, velas de miedo, las siete vidas, frases, notas y edición.
+- **Agregar:** foto instantánea o desde la galería, escaneo del código de barras (en vivo o desde una foto), ISBN escrito o búsqueda por título, que completan autor, páginas, estilo y portada. Si el libro es prestado, se registra solo en Préstamos con sus fechas.
+- **Ficha del libro:** estado, progreso, relecturas con + y −, huellitas, velas de miedo, las siete vidas, frases, notas, préstamo y edición.
 - **Mi librero:** mi librero real ordenado por estilo y numerado de izquierda a derecha, con buscador por número.
 - **Leer · Mi otra dimensión:** cronómetro con ronroneo, lluvia o bosque; al salir anoto la página y las vidas que me dio la lectura.
 - **Mi ritmo:** promedios semanales y mensuales, constelación de vidas, autores más leídos y mi año lector, que cierra cada 3 de noviembre con un resumen.
-- **Frases, Deseos y Préstamos.**
+- **Frases:** cada una vinculada a un libro de tu lista.
+- **Deseos:** los libros que buscas; al conseguirlos pasan a tu biblioteca.
+- **Préstamos:** lo que me prestaron y lo que presté, con fechas de préstamo y devolución, e historial de devueltos.
+- **Estilos:** terror, desarrollo personal, psicoanálisis, feminismo, finanzas, novela, fantasía, ensayo y otro.
 - **Ajustes:** español, inglés o italiano; modo noche o musgo; sonidos; respaldo e instalación.
 
 ## Archivos

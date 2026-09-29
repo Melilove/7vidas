@@ -1,5 +1,5 @@
 /* 7 Vidas · service worker · creada por melitalove para melitalove */
-const VERSION = "v1.1.1";
+const VERSION = "v1.2.0";
 const SHELL = "7vidas-shell-" + VERSION;
 const RUNTIME = "7vidas-runtime";
 const FILES = ["./", "./index.html", "./manifest.webmanifest", "./favicon.svg", "./icon-192.png", "./icon-512.png", "./maskable-512.png", "./apple-touch-icon.png"];
