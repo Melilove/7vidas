@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#13211A">
+<meta name="description" content="7 Vidas · Siete vidas en cada página">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="7 Vidas">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>7 Vidas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400&family=Nunito+Sans:opsz,wght@6..12,400..800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--gold:#E8B45A;--ongold:#1A2A21;--err:#F0B3AE;--bg:#13211A;--sf:#1C2F25;--sf2:#22382C;--ink:#EDE6D3;--mu:#AEBBAA;--ln:#2E4638;--ac:#A8CFA0;--onac:#13211A;--sky:#0E1914}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13211A}}
+:root[data-theme="dark"]{--bg:#13211A}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito Sans','Segoe UI',system-ui,-apple-system,sans-serif;transition:background .5s ease}
+body.t-moss{--bg:#24392E;--sf:#2E4839;--sf2:#35503F;--ink:#F1EADB;--mu:#C2CDBE;--ln:#46624F;--ac:#A8CFA0;--onac:#1A2A21;--sky:#35553F}
+#decor{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#app{position:relative;z-index:1;height:100%;max-width:520px;margin:0 auto}
+.shell{height:100%;display:flex;flex-direction:column}
+main{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}main::-webkit-scrollbar{display:none}
+.wrap{padding:8px 18px 28px}
+button{cursor:pointer;font-family:inherit;color:inherit}
+button:focus-visible,input:focus-visible,textarea:focus-visible,label:focus-within{outline:2px solid var(--gold);outline-offset:2px}
+input::placeholder,textarea::placeholder{color:#8FA592}
+img{max-width:100%}
+.serif{font-family:Fraunces,Georgia,serif}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;color:var(--ink);text-align:left;width:100%}
+.h1{margin:0;font-family:Fraunces,Georgia,serif;font-size:28px;font-weight:600;line-height:1.1}
+.h2{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--mu)}
+.mu{color:var(--mu)}
+.col{display:flex;flex-direction:column;gap:14px}
+.row{display:flex;align-items:center;gap:10px}
+.btn{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid var(--ln);background:transparent;color:var(--ink);font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.gold{background:var(--gold);color:var(--ongold);border-color:var(--gold)}
+.acc{background:var(--ac);color:var(--onac);border-color:var(--ac)}
+.chip{min-height:38px;padding:0 14px;border-radius:19px;border:1px solid var(--ln);background:transparent;color:var(--mu);font-size:13px;font-weight:700;white-space:nowrap;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:all .25s ease}
+.chip.on{background:var(--ac);color:var(--onac);border-color:var(--ac)}
+.in{min-height:44px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);padding:0 12px;font:inherit;font-size:16px;width:100%}
+textarea.in{padding:10px 12px;resize:none;min-height:84px;line-height:1.45}
+.lab{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;color:var(--mu)}
+.err{font-size:13px;color:var(--err);margin:0}
+.scr{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}.scr::-webkit-scrollbar{display:none}
+.wrapchips{display:flex;flex-wrap:wrap;gap:8px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 12px}
+.bub{margin:0;background:var(--sf);border:1px solid var(--ln);border-radius:4px 16px 16px 16px;padding:10px 12px;font-size:14px;line-height:1.45;flex:1}
+.cover{border-radius:4px 9px 9px 4px;box-shadow:inset 5px 0 0 rgba(0,0,0,.22),0 6px 14px rgba(0,0,0,.3);color:#F1EADB;font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;overflow:hidden}
+img.cover{object-fit:cover;box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.sw{position:relative;width:48px;height:28px;border-radius:14px;background:var(--ln);flex-shrink:0;transition:background .25s}
+.sw i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#F1EADB;transition:transform .25s ease}
+.sw.on{background:var(--ac)}.sw.on i{transform:translateX(20px)}
+.foot{margin:28px 0 0;text-align:center;font-size:11px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 8px}
+.iconbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--ln);background:var(--sf);display:flex;align-items:center;justify-content:center;padding:0}
+nav.bottom{flex-shrink:0;height:84px;background:var(--sf);border-top:1px solid var(--ln);display:flex;justify-content:space-around;align-items:center;padding:0 6px 10px}
+.nv{flex:1 1 0;min-width:0;height:60px;border:none;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--mu);padding:0}
+.nv span.pill{width:52px;height:30px;border-radius:15px;display:flex;align-items:center;justify-content:center;transition:background .25s}
+.nv.on{color:var(--ac)}.nv.on span.pill{background:var(--sf2)}
+.nv small{font-size:11px;font-weight:600;white-space:nowrap}.nv.on small{font-weight:800}
+.addbtn{width:58px;height:58px;margin-top:-26px;border-radius:50%;border:4px solid var(--bg);background:var(--gold);color:#1A2A21;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0}
+.case{background:#3B2E22;border-radius:12px;padding:8px 6px 2px}
+.shelfbtn{display:block;width:100%;border:none;border-radius:8px;padding:4px 4px 0;background:transparent}
+.shelfbtn.on{background:rgba(232,180,90,.16)}
+.shelfrow{display:flex;align-items:flex-end;gap:2px;height:60px;border-bottom:6px solid #5A4631;overflow:hidden}
+.mini{width:9px;flex-shrink:0;border-radius:1px 1px 0 0;transition:transform .25s}
+.mini.hit,.zb.hit{outline:2px solid var(--gold)}.mini.hit{transform:translateY(-6px)}
+.shelflbl{display:flex;justify-content:space-between;font-size:11px;color:#C2CDBE;padding:3px 2px 6px}
+.zrow{display:flex;align-items:flex-end;gap:5px;height:150px;border-bottom:8px solid #5A4631}
+.zb{flex:1;max-width:34px;border:none;border-radius:3px 3px 0 0;color:#F1EADB;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:6px 0 4px;overflow:hidden}
+.zb span.v{writing-mode:vertical-rl;font-size:11px;font-weight:700;max-height:100px;overflow:hidden;white-space:nowrap}
+.hero{position:relative;height:150px;border-radius:20px;background:var(--sky);overflow:hidden}
+.dot{position:absolute;width:4px;height:4px;border-radius:50%;background:#F1EADB}
+.page{animation:pagein .45s ease-out}
+@keyframes pagein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.tw{animation:tw 3.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.95}}
+.leaf{position:absolute;top:-30px;animation:drift linear infinite;opacity:.8;display:none}
+body.t-moss .leaf{display:block}
+@keyframes drift{0%{transform:translate(0,-20px) rotate(0)}50%{transform:translate(34px,50vh) rotate(170deg)}100%{transform:translate(-12px,105vh) rotate(330deg)}}
+.tail{transform-box:fill-box;transform-origin:0% 100%;animation:sway 2.8s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(16deg)}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 5.5s infinite}
+@keyframes blink{0%,91%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+.breathe{transform-box:fill-box;transform-origin:center bottom;animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.04)}}
+.float{animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.z{position:absolute;font-family:Fraunces,Georgia,serif;color:var(--mu);font-size:16px;opacity:0;animation:zz 3s ease-in infinite}
+@keyframes zz{0%{opacity:0;transform:translate(0,0)}30%{opacity:.9}100%{opacity:0;transform:translate(14px,-34px)}}
+.pop{animation:pop .5s ease-out}
+@keyframes pop{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
+.bar{transition:width .5s ease}
+.sig{display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center}.sig svg{margin:0 6px;flex-shrink:0}
+.scanv{width:100%;max-height:220px;border-radius:14px;background:#000;object-fit:cover}
+.x{width:36px;height:36px;border-radius:50%;border:1px solid var(--ln);background:transparent;color:var(--mu);flex-shrink:0;padding:0;display:flex;align-items:center;justify-content:center;font-size:14px}
+.big{font-family:Fraunces,Georgia,serif;font-size:44px;font-weight:600;line-height:1;color:var(--gold)}
+.splash{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px;text-align:center}
+@media (prefers-reduced-motion:reduce){.page,.tw,.leaf,.tail,.eye,.breathe,.float,.z,.pop{animation:none}.leaf{display:none!important}}
+</style>
+</head>
+<body class="t-night">
+<div id="decor" aria-hidden="true"></div>
+<div id="app"></div>
+<script>
+(function () {
+"use strict";
+var VERSION = "v1.1.0", KEY = "7vidas:v1", DAY = 864e5;
+var DICT = {
+      es: {
+        tagline: "Siete vidas en cada página", sig: "Hecha por melitalove, para melitalove", version: "Versión", enter: "Entrar", switchMode: "Cambiar modo", moreNav: "Más secciones", mainNav: "Secciones principales",
+        nav: { home: "Guarida", library: "Biblioteca", add: "Agregar", read: "Leer", stats: "Mi ritmo", shelf: "Librero", quotes: "Frases", wishes: "Deseos", loans: "Préstamos", settings: "Ajustes" },
+        greet: "Hola, Melannie", starsOne: "{n} estrellas en tu cielo: una por cada libro terminado", starsZero: "Cada libro que termines encenderá una estrella aquí",
+        pickTitle: "¿Qué leo ahora?", pickBtn: "Que elijan Frida y Lina", pickNone: "Agrega libros por leer y ellas sortean uno.", pickResult: "Eligieron:", another: "Otro", startReading: "Empezar",
+        emptyLibTitle: "Tu primera vida te espera", emptyLibBody: "Agrega un libro con una foto de su portada.", addFirst: "Agregar libro",
+        readingNow: "Leyendo ahora", loanAlert: "{n} préstamo(s) por devolver", quoteDay: "Frase del día", noQuote: "Aún no guardas frases.",
+        books: "{n} libros", collections: "Colecciones automáticas", byAuthor: "Autor", byStyle: "Estilo", noMatch: "Ningún libro en este filtro.",
+        f: { all: "Todos", physical: "Físicos", reading: "Leyendo", read: "Leídos", toread: "Por leer", reread: "Releídos" },
+        st: { toread: "Por leer", reading: "Leyendo", read: "Leído" },
+        styles: { horror: "Terror", growth: "Desarrollo personal", novel: "Novela", fantasy: "Fantasía", poetry: "Poesía", essay: "Ensayo", other: "Otro" },
+        addTitle: "Agregar libro", photo: "Foto de portada", takePhoto: "Foto de portada", scan: "Escanear código", scanNote: "Al instalar la app, el código de barras completa autor, páginas y género.",
+        fTitle: "Título", fAuthor: "Autor", fStyle: "Estilo de lectura", fStatus: "Estado", fPhysical: "Lo tengo en físico", fPages: "Páginas", save: "Guardar", needTitle: "Escribe el título",
+        readTitle: "Mi otra dimensión", which: "¿Qué vas a leer?", noBook: "Sin libro", enterBtn: "Entrar a mi otra dimensión", exitBtn: "Salir y anotar", pageQ: "¿En qué página quedaste?", vidasQ: "¿Qué vidas te dio esta lectura?", saveSession: "Guardar lectura",
+        snd: { purr: "Ronroneo", rain: "Lluvia", forest: "Bosque" },
+        vidas: { know: "Conocimiento", grow: "Crecimiento", imag: "Imaginación", flow: "Flow", emo: "Emociones", dim: "Otra dimensión", wonder: "Asombro" },
+        mWeek: "libros por semana", mMonth: "libros por mes", mYear: "libros este año lector", mMin: "minutos en tu otra dimensión", mPph: "páginas por hora", mReread: "relecturas",
+        year: "Año lector", yearEnds: "Tu año lector cierra el 3 de noviembre", daysLeft: "Faltan {d} días para tu resumen de cumpleaños", constellation: "Tu constelación", topVida: "Este año leer fue sobre todo {v}.", constEmpty: "Enciende estrellas al terminar tus lecturas.", topAuthors: "Autores más leídos", noData: "Sin datos aún",
+        shelfTitle: "Mi librero", shelfSub: "Ordenado por estilo · numerado de izquierda a derecha", find: "¿Dónde está el N°…?", findBtn: "Buscar", badNum: "Escribe un número entre 1 y {n}", shelfN: "Repisa", emptyShelf: "Aquí aparecerán tus libros físicos, numerados.", shelfLine: "N° {n} en tu librero", notShelf: "No está en tu librero",
+        qText: "Tu frase", qBook: "Libro (opcional)", needText: "Escribe la frase", addQuote: "Guardar frase", emptyQ: "Tus frases favoritas vivirán aquí.",
+        wWhere: "Dónde conseguirlo", addWish: "Agregar deseo", got: "Lo conseguí", emptyW: "Los libros que sueñas tener.",
+        tabIn: "Me prestaron", tabOut: "Presté", lTitle: "Libro", lFrom: "¿De quién?", lTo: "¿A quién?", addLoan: "Registrar préstamo", daysAgo: "hace {d} días", returned: "Devuelto", emptyL: "Nada pendiente. Frida está orgullosa.", needLoan: "Completa libro y persona", from: "De", to: "Para",
+        language: "Idioma", mode: "Modo", night: "Noche", moss: "Musgo", soundsT: "Sonidos para leer", backup: "Respaldo e instalación", export: "Exportar datos y fotos", import: "Importar respaldo", install: "Instalar en mi celular", installNote: "Disponible en la versión instalable (PWA).",
+        back: "Volver", progress: "Progreso", page: "Página", of: "de", reads: "Leído {n} veces", readsZero: "Aún no terminado", reread: "+ Relectura", rating: "Tu valoración", fear: "Nivel de miedo", vidasBook: "Las vidas que te dio", bookQuotes: "Frases de este libro", notes: "Notas", notePh: "¿Qué te dejó esta lectura?", paw: "{n} de 5", candle: "Miedo {n} de 5",
+        say: {
+          home: ["Lina", "Bienvenida a tu otra dimensión. Yo guardo tus frases, Frida guarda el orden."],
+          homeEmpty: ["Lina", "Tu estantería está vacía. Tómale una foto a tu primer libro y empezamos."],
+          library: ["Frida", "Si un autor se repite, le armo su propio estante. Sin que me lo pidas."],
+          add: ["Lina", "Foto a la portada y listo. Yo me encargo del resto."],
+          read: ["Frida y Lina", "Nosotras nos dormimos. Tú entra a tu otra dimensión."],
+          stats: ["Frida", "Llevo la cuenta de todo. Es lo mío."],
+          shelf: ["Frida", "Tu librero real, por estilo y de izquierda a derecha. Nada se me pierde."],
+          quotes: ["Lina", "Anoté esa frase. Y la otra. Me gustan las frases."],
+          wishes: ["Lina", "Los libros que buscas. Cuando lo consigas, yo lo subo a la repisa."],
+          loans: ["Frida", "Un libro prestado tiene dueña. Yo llevo la cuenta de los días."],
+          settings: ["Lina", "Aquí decides cómo se ve tu otra dimensión."],
+          bookH: ["Frida", "Lee con la luz encendida. Yo vigilo la puerta."],
+          bookG: ["Lina", "Subraya lo que te mueva. Ahí está lo importante."]
+        }
+      },
+      en: {
+        tagline: "Seven lives on every page", sig: "Made by melitalove, for melitalove", version: "Version", enter: "Enter", switchMode: "Switch mode", moreNav: "More sections", mainNav: "Main sections",
+        nav: { home: "Den", library: "Library", add: "Add", read: "Read", stats: "My pace", shelf: "Bookcase", quotes: "Quotes", wishes: "Wishlist", loans: "Loans", settings: "Settings" },
+        greet: "Hi, Melannie", starsOne: "{n} stars in your sky: one for each finished book", starsZero: "Every book you finish will light a star here",
+        pickTitle: "What do I read next?", pickBtn: "Let Frida and Lina choose", pickNone: "Add books to read and they'll draw one.", pickResult: "They chose:", another: "Another", startReading: "Start",
+        emptyLibTitle: "Your first life awaits", emptyLibBody: "Add a book with a photo of its cover.", addFirst: "Add book",
+        readingNow: "Reading now", loanAlert: "{n} loan(s) to return", quoteDay: "Quote of the day", noQuote: "No saved quotes yet.",
+        books: "{n} books", collections: "Automatic collections", byAuthor: "Author", byStyle: "Style", noMatch: "No books in this filter.",
+        f: { all: "All", physical: "Physical", reading: "Reading", read: "Read", toread: "To read", reread: "Reread" },
+        st: { toread: "To read", reading: "Reading", read: "Read" },
+        styles: { horror: "Horror", growth: "Personal growth", novel: "Novel", fantasy: "Fantasy", poetry: "Poetry", essay: "Essay", other: "Other" },
+        addTitle: "Add book", photo: "Cover photo", takePhoto: "Cover photo", scan: "Scan barcode", scanNote: "Once the app is installed, the barcode fills in author, pages and genre.",
+        fTitle: "Title", fAuthor: "Author", fStyle: "Reading style", fStatus: "Status", fPhysical: "I own a physical copy", fPages: "Pages", save: "Save", needTitle: "Enter the title",
+        readTitle: "My other dimension", which: "What are you reading?", noBook: "No book", enterBtn: "Enter my other dimension", exitBtn: "Exit and log", pageQ: "What page are you on?", vidasQ: "What lives did this reading give you?", saveSession: "Save reading",
+        snd: { purr: "Purring", rain: "Rain", forest: "Forest" },
+        vidas: { know: "Knowledge", grow: "Growth", imag: "Imagination", flow: "Flow", emo: "Emotions", dim: "Another dimension", wonder: "Wonder" },
+        mWeek: "books per week", mMonth: "books per month", mYear: "books this reading year", mMin: "minutes in your other dimension", mPph: "pages per hour", mReread: "rereads",
+        year: "Reading year", yearEnds: "Your reading year closes on November 3", daysLeft: "{d} days until your birthday recap", constellation: "Your constellation", topVida: "This year, reading was mostly {v}.", constEmpty: "Light up stars as you finish your readings.", topAuthors: "Most-read authors", noData: "No data yet",
+        shelfTitle: "My bookcase", shelfSub: "Sorted by style · numbered left to right", find: "Where is No.…?", findBtn: "Find", badNum: "Enter a number from 1 to {n}", shelfN: "Shelf", emptyShelf: "Your physical books will appear here, numbered.", shelfLine: "No. {n} in your bookcase", notShelf: "Not in your bookcase",
+        qText: "Your quote", qBook: "Book (optional)", needText: "Write the quote", addQuote: "Save quote", emptyQ: "Your favorite quotes will live here.",
+        wWhere: "Where to find it", addWish: "Add wish", got: "I got it", emptyW: "The books you dream of owning.",
+        tabIn: "Borrowed", tabOut: "Lent", lTitle: "Book", lFrom: "From whom?", lTo: "To whom?", addLoan: "Log loan", daysAgo: "{d} days ago", returned: "Returned", emptyL: "Nothing pending. Frida is proud.", needLoan: "Fill in book and person", from: "From", to: "To",
+        language: "Language", mode: "Mode", night: "Night", moss: "Moss", soundsT: "Reading sounds", backup: "Backup and install", export: "Export data and photos", import: "Import backup", install: "Install on my phone", installNote: "Available in the installable version (PWA).",
+        back: "Back", progress: "Progress", page: "Page", of: "of", reads: "Read {n} times", readsZero: "Not finished yet", reread: "+ Reread", rating: "Your rating", fear: "Fear level", vidasBook: "The lives it gave you", bookQuotes: "Quotes from this book", notes: "Notes", notePh: "What did this book leave you with?", paw: "{n} of 5", candle: "Fear {n} of 5",
+        say: {
+          home: ["Lina", "Welcome to your other dimension. I keep your quotes, Frida keeps the order."],
+          homeEmpty: ["Lina", "Your shelf is empty. Snap a photo of your first book and we'll begin."],
+          library: ["Frida", "If an author repeats, I build them a shelf. Without being asked."],
+          add: ["Lina", "A photo of the cover and done. I'll handle the rest."],
+          read: ["Frida and Lina", "We'll nap. You enter your other dimension."],
+          stats: ["Frida", "I keep count of everything. It's my thing."],
+          shelf: ["Frida", "Your real bookcase, by style, left to right. I never lose a thing."],
+          quotes: ["Lina", "I wrote that one down. And the other. I like quotes."],
+          wishes: ["Lina", "The books you're hunting. When you get one, I'll shelve it."],
+          loans: ["Frida", "A borrowed book has an owner. I'm counting the days."],
+          settings: ["Lina", "Here you decide how your other dimension looks."],
+          bookH: ["Frida", "Keep the light on. I'll watch the door."],
+          bookG: ["Lina", "Underline what moves you. That's where it matters."]
+        }
+      },
+      it: {
+        tagline: "Sette vite in ogni pagina", sig: "Creata da melitalove, per melitalove", version: "Versione", enter: "Entra", switchMode: "Cambia modalità", moreNav: "Altre sezioni", mainNav: "Sezioni principali",
+        nav: { home: "Tana", library: "Biblioteca", add: "Aggiungi", read: "Leggi", stats: "Il mio ritmo", shelf: "Libreria", quotes: "Frasi", wishes: "Desideri", loans: "Prestiti", settings: "Opzioni" },
+        greet: "Ciao, Melannie", starsOne: "{n} stelle nel tuo cielo: una per ogni libro finito", starsZero: "Ogni libro che finisci accenderà una stella qui",
+        pickTitle: "Cosa leggo adesso?", pickBtn: "Scelgano Frida e Lina", pickNone: "Aggiungi libri da leggere e ne estrarranno uno.", pickResult: "Hanno scelto:", another: "Un altro", startReading: "Inizia",
+        emptyLibTitle: "La tua prima vita ti aspetta", emptyLibBody: "Aggiungi un libro con una foto della copertina.", addFirst: "Aggiungi libro",
+        readingNow: "In lettura", loanAlert: "{n} prestito/i da restituire", quoteDay: "Frase del giorno", noQuote: "Ancora nessuna frase salvata.",
+        books: "{n} libri", collections: "Collezioni automatiche", byAuthor: "Autore", byStyle: "Stile", noMatch: "Nessun libro in questo filtro.",
+        f: { all: "Tutti", physical: "Cartacei", reading: "In lettura", read: "Letti", toread: "Da leggere", reread: "Riletti" },
+        st: { toread: "Da leggere", reading: "In lettura", read: "Letto" },
+        styles: { horror: "Horror", growth: "Crescita personale", novel: "Romanzo", fantasy: "Fantasy", poetry: "Poesia", essay: "Saggio", other: "Altro" },
+        addTitle: "Aggiungi libro", photo: "Foto della copertina", takePhoto: "Foto copertina", scan: "Scansiona codice", scanNote: "Installando l'app, il codice a barre compila autore, pagine e genere.",
+        fTitle: "Titolo", fAuthor: "Autore", fStyle: "Stile di lettura", fStatus: "Stato", fPhysical: "Ce l'ho cartaceo", fPages: "Pagine", save: "Salva", needTitle: "Scrivi il titolo",
+        readTitle: "La mia altra dimensione", which: "Cosa leggi?", noBook: "Nessun libro", enterBtn: "Entra nella mia altra dimensione", exitBtn: "Esci e annota", pageQ: "A che pagina sei?", vidasQ: "Quali vite ti ha dato questa lettura?", saveSession: "Salva lettura",
+        snd: { purr: "Fusa", rain: "Pioggia", forest: "Bosco" },
+        vidas: { know: "Conoscenza", grow: "Crescita", imag: "Immaginazione", flow: "Flow", emo: "Emozioni", dim: "Altra dimensione", wonder: "Meraviglia" },
+        mWeek: "libri a settimana", mMonth: "libri al mese", mYear: "libri quest'anno di lettura", mMin: "minuti nella tua altra dimensione", mPph: "pagine all'ora", mReread: "riletture",
+        year: "Anno di lettura", yearEnds: "Il tuo anno di lettura si chiude il 3 novembre", daysLeft: "Mancano {d} giorni al tuo riepilogo di compleanno", constellation: "La tua costellazione", topVida: "Quest'anno leggere è stato soprattutto {v}.", constEmpty: "Accendi stelle finendo le tue letture.", topAuthors: "Autori più letti", noData: "Ancora nessun dato",
+        shelfTitle: "La mia libreria", shelfSub: "Ordinata per stile · numerata da sinistra a destra", find: "Dov'è il N°…?", findBtn: "Cerca", badNum: "Scrivi un numero da 1 a {n}", shelfN: "Ripiano", emptyShelf: "Qui appariranno i tuoi libri cartacei, numerati.", shelfLine: "N° {n} nella tua libreria", notShelf: "Non è nella tua libreria",
+        qText: "La tua frase", qBook: "Libro (facoltativo)", needText: "Scrivi la frase", addQuote: "Salva frase", emptyQ: "Le tue frasi preferite vivranno qui.",
+        wWhere: "Dove trovarlo", addWish: "Aggiungi desiderio", got: "Ce l'ho", emptyW: "I libri che sogni di avere.",
+        tabIn: "Mi hanno prestato", tabOut: "Ho prestato", lTitle: "Libro", lFrom: "Da chi?", lTo: "A chi?", addLoan: "Registra prestito", daysAgo: "da {d} giorni", returned: "Restituito", emptyL: "Niente in sospeso. Frida è fiera.", needLoan: "Compila libro e persona", from: "Da", to: "A",
+        language: "Lingua", mode: "Modalità", night: "Notte", moss: "Muschio", soundsT: "Suoni per leggere", backup: "Backup e installazione", export: "Esporta dati e foto", import: "Importa backup", install: "Installa sul telefono", installNote: "Disponibile nella versione installabile (PWA).",
+        back: "Indietro", progress: "Progresso", page: "Pagina", of: "di", reads: "Letto {n} volte", readsZero: "Non ancora finito", reread: "+ Rilettura", rating: "Il tuo voto", fear: "Livello di paura", vidasBook: "Le vite che ti ha dato", bookQuotes: "Frasi di questo libro", notes: "Note", notePh: "Cosa ti ha lasciato questa lettura?", paw: "{n} su 5", candle: "Paura {n} su 5",
+        say: {
+          home: ["Lina", "Benvenuta nella tua altra dimensione. Io custodisco le frasi, Frida l'ordine."],
+          homeEmpty: ["Lina", "Lo scaffale è vuoto. Fotografa il tuo primo libro e cominciamo."],
+          library: ["Frida", "Se un autore si ripete, gli preparo uno scaffale. Senza che tu lo chieda."],
+          add: ["Lina", "Una foto alla copertina ed è fatta. Al resto penso io."],
+          read: ["Frida e Lina", "Noi dormiamo. Tu entra nella tua altra dimensione."],
+          stats: ["Frida", "Tengo il conto di tutto. È la mia specialità."],
+          shelf: ["Frida", "La tua libreria vera, per stile, da sinistra a destra. Non perdo niente."],
+          quotes: ["Lina", "Ho annotato quella frase. E l'altra. Mi piacciono le frasi."],
+          wishes: ["Lina", "I libri che cerchi. Quando lo trovi, lo metto sullo scaffale."],
+          loans: ["Frida", "Un libro prestato ha una padrona. Io conto i giorni."],
+          settings: ["Lina", "Qui decidi come appare la tua altra dimensione."],
+          bookH: ["Frida", "Leggi con la luce accesa. Io controllo la porta."],
+          bookG: ["Lina", "Sottolinea ciò che ti muove. Lì c'è l'essenziale."]
+        }
+      }
+    };
+var EXTRA = {
+  es: { sigA: "Creada por melitalove", sigB: "para melitalove", syncCloud: "Tus datos se guardan en tu cuenta y te siguen en cada dispositivo.", syncLocal: "Tus datos se guardan en este dispositivo. Exporta un respaldo de vez en cuando.", del: "Eliminar libro", delConfirm: "Toca otra vez para eliminar", edit: "Editar", editTitle: "Editar libro", cancel: "Cancelar", remove: "Eliminar",
+    installNote: "Para instalarla con su ícono, ábrela desde tu página de GitHub.", installIOS: "En iPhone: abre 7 Vidas en Safari, toca Compartir y luego “Agregar a inicio”.", installAndroid: "En Android: abre el menú de Chrome y toca “Instalar app”.", installed: "7 Vidas ya está instalada en este dispositivo.",
+    exportOk: "Respaldo listo.", importOk: "Respaldo importado.", importBad: "Ese archivo no es un respaldo de 7 Vidas.", busy: "Procesando foto…",
+    scan: "Escanear código", isbn: "ISBN", isbnPh: "Escribe el ISBN", lookup: "Buscar", looking: "Buscando…", found: "Encontré el libro. Revisa los datos.", notFound: "No encontré ese ISBN. Complétalo a mano.", offline: "Sin conexión: completa los datos a mano.", camNo: "Este navegador no escanea códigos. Escribe el ISBN.", scanning: "Apunta la cámara al código de barras", closeCam: "Cerrar cámara",
+    moodAny: "Cualquiera", moodFear: "Quiero miedo", moodGrow: "Quiero crecer", placed: "Va en el N° {n} de tu librero.",
+    recapBtn: "Ver mi resumen del año", recapTitle: "Tu año lector", recapBooks: "libros terminados", recapAuthor: "Autor del año", recapVida: "Vida del año", recapQuote: "Frase del año", recapNone: "Aún no hay lecturas terminadas este año.", happy: "¡Feliz cumpleaños, Melannie! Aquí está tu año lector." },
+  en: { sigA: "Created by melitalove", sigB: "for melitalove", syncCloud: "Your data is saved to your account and follows you on every device.", syncLocal: "Your data is saved on this device. Export a backup now and then.", del: "Delete book", delConfirm: "Tap again to delete", edit: "Edit", editTitle: "Edit book", cancel: "Cancel", remove: "Delete",
+    installNote: "To install it with its icon, open it from your GitHub page.", installIOS: "On iPhone: open 7 Vidas in Safari, tap Share, then “Add to Home Screen”.", installAndroid: "On Android: open Chrome's menu and tap “Install app”.", installed: "7 Vidas is already installed on this device.",
+    exportOk: "Backup ready.", importOk: "Backup imported.", importBad: "That file isn't a 7 Vidas backup.", busy: "Processing photo…",
+    scan: "Scan barcode", isbn: "ISBN", isbnPh: "Type the ISBN", lookup: "Look up", looking: "Searching…", found: "Found it. Check the details.", notFound: "Couldn't find that ISBN. Fill it in by hand.", offline: "Offline: fill in the details by hand.", camNo: "This browser can't scan barcodes. Type the ISBN.", scanning: "Point the camera at the barcode", closeCam: "Close camera",
+    moodAny: "Any", moodFear: "I want fear", moodGrow: "I want to grow", placed: "It goes in No. {n} of your bookcase.",
+    recapBtn: "See my year recap", recapTitle: "Your reading year", recapBooks: "books finished", recapAuthor: "Author of the year", recapVida: "Life of the year", recapQuote: "Quote of the year", recapNone: "No finished readings this year yet.", happy: "Happy birthday, Melannie! Here's your reading year." },
+  it: { sigA: "Creata da melitalove", sigB: "per melitalove", syncCloud: "I tuoi dati sono salvati nel tuo account e ti seguono su ogni dispositivo.", syncLocal: "I tuoi dati sono salvati su questo dispositivo. Esporta un backup ogni tanto.", del: "Elimina libro", delConfirm: "Tocca di nuovo per eliminare", edit: "Modifica", editTitle: "Modifica libro", cancel: "Annulla", remove: "Elimina",
+    installNote: "Per installarla con la sua icona, aprila dalla tua pagina GitHub.", installIOS: "Su iPhone: apri 7 Vidas in Safari, tocca Condividi e poi “Aggiungi alla schermata Home”.", installAndroid: "Su Android: apri il menu di Chrome e tocca “Installa app”.", installed: "7 Vidas è già installata su questo dispositivo.",
+    exportOk: "Backup pronto.", importOk: "Backup importato.", importBad: "Questo file non è un backup di 7 Vidas.", busy: "Elaborazione foto…",
+    scan: "Scansiona codice", isbn: "ISBN", isbnPh: "Scrivi l'ISBN", lookup: "Cerca", looking: "Ricerca…", found: "Trovato. Controlla i dati.", notFound: "ISBN non trovato. Compila a mano.", offline: "Offline: compila i dati a mano.", camNo: "Questo browser non scansiona codici. Scrivi l'ISBN.", scanning: "Inquadra il codice a barre", closeCam: "Chiudi fotocamera",
+    moodAny: "Qualsiasi", moodFear: "Voglio paura", moodGrow: "Voglio crescere", placed: "Va al N° {n} della tua libreria.",
+    recapBtn: "Vedi il mio riepilogo dell'anno", recapTitle: "Il tuo anno di lettura", recapBooks: "libri finiti", recapAuthor: "Autore dell'anno", recapVida: "Vita dell'anno", recapQuote: "Frase dell'anno", recapNone: "Ancora nessuna lettura finita quest'anno.", happy: "Buon compleanno, Melannie! Ecco il tuo anno di lettura." }
+};
+Object.keys(EXTRA).forEach(function (l) { Object.assign(DICT[l], EXTRA[l]); });
+var SK = ["horror", "growth", "novel", "fantasy", "poetry", "essay", "other"];
+var SC = { horror: "#3A2230", growth: "#4F7A4A", novel: "#2B4A3A", fantasy: "#3D4A6B", poetry: "#7A4A5E", essay: "#6B5A3A", other: "#4A5A52" };
+var VK = ["know", "grow", "imag", "flow", "emo", "dim", "wonder"];
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+function fmt(s, k, v) { return String(s).replace("{" + k + "}", v); }
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function T() { return DICT[S.lang] || DICT.es; }
+function blankForm(style) { return { title: "", author: "", style: style || "horror", status: "toread", physical: true, pages: "", photo: null, err: false, busy: false, isbn: "", showIsbn: false, scanning: false, isbnMsg: "" }; }
+var BOOKS_SVG = '<svg width="18" height="15" viewBox="0 0 24 20" aria-hidden="true"><rect x="2" y="4" width="5" height="15" rx="1" fill="#E8B45A"/><rect x="8" y="2" width="5" height="17" rx="1" fill="#A8CFA0"/><path d="M14.6 5.6l4-1.1 3.7 13.4-4 1.1z" fill="#D9822B"/></svg>';
+function sigHTML(t) { return '<span class="sig">' + esc(t.sigA) + BOOKS_SVG + esc(t.sigB) + '</span>'; }
+
+var S = {
+  screen: "splash", prev: "home", lang: "es", night: true, books: [], quotes: [], wishes: [], loans: [], sessions: [], sounds: { purr: true, rain: false, forest: false },
+  filter: "all", coll: null, pickId: null, pickEmpty: false,
+  f: blankForm("horror"), editId: null, mood: "any", placed: "", placedNext: "", showRecap: false,
+  r: { running: false, after: false, timer: 0, startAt: 0, book: null, page: "", vidas: {} },
+  q: { text: "", book: "", err: false }, w: { title: "", author: "", where: "", err: false }, l: { title: "", person: "", err: false, tab: "in" },
+  bookId: null, bq: "", find: "", findErr: "", hit: null, shelfSel: 0, zPage: 0, note: false, delArm: false, msg: "", sync: "local"
+};
+try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if (saved) applyData(saved); } catch (e) {}
+function applyData(d) {
+  ["books", "quotes", "wishes", "loans", "sessions"].forEach(function (k) { if (Array.isArray(d[k])) S[k] = d[k]; });
+  S.quotes = S.quotes.map(function (q) { return q.id ? q : Object.assign({ id: uid() }, q); });
+  if (d.lang && DICT[d.lang]) S.lang = d.lang; if (typeof d.night === "boolean") S.night = d.night; if (d.sounds) S.sounds = d.sounds;
+}
+function meta() { return { quotes: S.quotes, wishes: S.wishes, loans: S.loans, sessions: S.sessions, lang: S.lang, night: S.night, sounds: S.sounds, v: 1 }; }
+var IDB = null, idbT = null;
+function idbOpen() { return new Promise(function (res) { try { var rq = indexedDB.open("7vidas", 1); rq.onupgradeneeded = function () { rq.result.createObjectStore("kv"); }; rq.onsuccess = function () { res(rq.result); }; rq.onerror = function () { res(null); }; } catch (e) { res(null); } }); }
+function idbReq(mode, fn) { return new Promise(function (res) { try { var tx = IDB.transaction("kv", mode), rq = fn(tx.objectStore("kv")); tx.oncomplete = function () { res(rq && rq.result); }; tx.onerror = tx.onabort = function () { res(null); }; } catch (e) { res(null); } }); }
+function saveLocal() {
+  clearTimeout(idbT);
+  idbT = setTimeout(function () {
+    var data = Object.assign({ books: S.books }, meta());
+    if (IDB) idbReq("readwrite", function (st) { return st.put(data, "state"); });
+    try { localStorage.setItem(KEY, JSON.stringify(IDB ? meta() : data)); } catch (e) {}
+  }, 250);
+}
+var storageReady = idbOpen().then(function (db) {
+  IDB = db; if (!db) return;
+  return idbReq("readonly", function (st) { return st.get("state"); }).then(function (d) {
+    if (d && Array.isArray(d.books)) { applyData(d); if (S.screen !== "splash") render(); } else if (S.books.length) saveLocal();
+  });
+});
+try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {}); } catch (e) {}
+
+var RDB = null, BASE = null, ASSETS = null, DL = null, dirtyBooks = {}, delBooks = {}, metaDirty = false, flushT = null, flushing = false;
+function touchBook(id) { dirtyBooks[id] = 1; schedule(); }
+function touchMeta() { metaDirty = true; schedule(); }
+function schedule() { saveLocal(); if (!RDB) return; clearTimeout(flushT); flushT = setTimeout(flush, 800); }
+function flush() {
+  if (!RDB || flushing) return; flushing = true;
+  var ids = Object.keys(dirtyBooks), dels = Object.keys(delBooks), m = metaDirty; dirtyBooks = {}; delBooks = {}; metaDirty = false;
+  var chain = Promise.resolve();
+  ids.forEach(function (id) { var b = S.books.filter(function (x) { return x.id === id; })[0]; if (b) chain = chain.then(function () { return RDB.doc(BASE + "/lib/books/" + id).set(b); }); });
+  dels.forEach(function (id) { chain = chain.then(function () { return RDB.doc(BASE + "/lib/books/" + id).delete(); }); });
+  if (m) chain = chain.then(function () { return RDB.doc(BASE + "/lib").set(meta()); });
+  chain.catch(function (e) {
+    ids.forEach(function (id) { dirtyBooks[id] = 1; }); dels.forEach(function (id) { delBooks[id] = 1; }); if (m) metaDirty = true;
+    if (e && /not_granted|capability_disabled|capability_removed|revoked/.test(e.code || "")) { RDB = null; S.sync = "local"; render(); }
+  }).then(function () { flushing = false; if (RDB && (Object.keys(dirtyBooks).length || Object.keys(delBooks).length || metaDirty)) { clearTimeout(flushT); flushT = setTimeout(flush, 2500); } });
+}
+function connect() {
+  if (!window.claude || typeof window.claude.use !== "function") return;
+  window.claude.use("assets").then(function (a) { ASSETS = a; }).catch(function () {});
+  window.claude.use("downloads").then(function (d) { DL = d; }).catch(function () {});
+  Promise.all([window.claude.use("db"), window.claude.use("user")]).then(function (r) {
+    var db = r[0], user = r[1]; if (!db || !user) return null;
+    return user.id().then(function (id) {
+      if (!id) return null; BASE = "data/users/" + id;
+      return Promise.all([db.collection(BASE + "/lib/books").get(), db.doc(BASE + "/lib").get()]).then(function (res) {
+        var remote = res[0].docs.map(function (d) { return d.data(); }).filter(Boolean), ms = res[1];
+        RDB = db; S.sync = "cloud";
+        if (!ms.exists && remote.length === 0) { S.books.forEach(function (b) { dirtyBooks[b.id] = 1; }); metaDirty = true; }
+        else { var m = ms.exists ? (ms.data() || {}) : {}; m.books = remote.sort(function (a, b) { return (a.created || 0) - (b.created || 0); }); applyData(m); }
+        render(); schedule();
+      });
+    });
+  }).catch(function () { RDB = null; });
+}
+
+function catDuo() {
+  return '<svg width="74" height="54" viewBox="0 0 100 72" aria-hidden="true" style="flex-shrink:0">' +
+    '<g transform="translate(2 2)"><path class="tail" d="M50 63c9 0 12-8 8-17" fill="none" stroke="#D9822B" stroke-width="5" stroke-linecap="round"/><path class="breathe" d="M14 66C4 66 3 52 8 42c4-8 5-16 6-22L12 7l9 8c5-2 13-2 18 0l9-8-2 13c1 6 2 14 6 22 5 10 4 24-6 24z" fill="#D9822B"/><ellipse cx="30" cy="52" rx="11" ry="12" fill="#F2B874"/><path d="M26 12.5v4M30 11.5v5M34 12.5v4" stroke="#A8561A" stroke-width="1.4" stroke-linecap="round"/><ellipse class="eye" cx="24" cy="25.5" rx="2.8" ry="3.4" fill="#2F5A2A"/><ellipse class="eye" cx="36" cy="25.5" rx="2.8" ry="3.4" fill="#2F5A2A"/></g>' +
+    '<g transform="translate(46 26) scale(0.66)"><path class="breathe" d="M20 66C13 66 11 53 14 43c3-8 3-16 4-22L16 9l8 7c3-2 9-2 12 0l8-7-2 12c1 6 1 14 4 22 3 10 2 23-5 23z" fill="#E3C27E"/><ellipse cx="30" cy="54" rx="8" ry="10" fill="#F6E7C1"/><ellipse class="eye" cx="25" cy="27" rx="3.1" ry="3.7" fill="#4E6A2E"/><ellipse class="eye" cx="35" cy="27" rx="3.1" ry="3.7" fill="#4E6A2E"/></g>' +
+    '<path d="M50 69c8 2 18 1 24-3" fill="none" stroke="#D9822B" stroke-width="4" stroke-linecap="round"/></svg>';
+}
+function icon(size, cls) {
+  var st = ""; [[56, 60], [62, 47], [70, 40], [84, 40], [92, 47], [97, 60]].forEach(function (p, i) { st += '<circle class="tw" cx="' + p[0] + '" cy="' + p[1] + '" r="1.5" fill="#EDE6C8" style="animation-delay:' + (i * 0.5) + 's"/>'; });
+  return '<svg class="' + (cls || "") + '" width="' + size + '" height="' + size + '" viewBox="0 0 150 150" aria-hidden="true"><rect width="150" height="150" rx="32" fill="#35553F"/><rect x="28" y="16" width="94" height="120" rx="6" fill="#1F3A2E"/><rect x="28" y="16" width="10" height="120" rx="3" fill="#16291F"/><rect x="118" y="20" width="4" height="112" fill="#F1EADB"/><path d="M46 104V62a29 29 0 0 1 58 0V104Z" fill="#0E1914"/>' + st +
+    '<path d="M77 48l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z" fill="#E8B45A"/><g transform="translate(50 62) scale(0.62)"><path d="M14 66C4 66 3 52 8 42c4-8 5-16 6-22L12 7l9 8c5-2 13-2 18 0l9-8-2 13c1 6 2 14 6 22 5 10 4 24-6 24z" fill="#D9822B"/><ellipse cx="30" cy="52" rx="11" ry="12" fill="#F2B874"/><ellipse class="eye" cx="24" cy="25.5" rx="2.8" ry="3.4" fill="#2F5A2A"/><ellipse class="eye" cx="36" cy="25.5" rx="2.8" ry="3.4" fill="#2F5A2A"/></g><g transform="translate(78 74) scale(0.45)"><path d="M20 66C13 66 11 53 14 43c3-8 3-16 4-22L16 9l8 7c3-2 9-2 12 0l8-7-2 12c1 6 1 14 4 22 3 10 2 23-5 23z" fill="#E3C27E"/><ellipse cx="30" cy="54" rx="8" ry="10" fill="#F6E7C1"/><ellipse class="eye" cx="25" cy="27" rx="3.1" ry="3.7" fill="#4E6A2E"/><ellipse class="eye" cx="35" cy="27" rx="3.1" ry="3.7" fill="#4E6A2E"/></g><path d="M80 101c6 3 14 3 19-2" fill="none" stroke="#D9822B" stroke-width="3" stroke-linecap="round"/><rect x="42" y="103" width="66" height="5" rx="1" fill="#F1EADB"/></svg>';
+}
+function ico(d, size, sw) { return '<svg width="' + (size || 20) + '" height="' + (size || 20) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (sw || 1.8) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>'; }
+var IC = {
+  home: "M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z", library: "M4 4h4v16H4zM10 4h4v16h-4zM15.5 5.5l3.9-1 3.1 15-3.9 1z",
+  read: "M3 5c3-1 6-1 9 1 3-2 6-2 9-1v14c-3-1-6-1-9 1-3-2-6-2-9-1zM12 6v14", stats: "M4 19V5M4 19h16M8 15l4-4 3 3 5-6",
+  shelf: "M4 3h16v18H4zM4 9h16M4 15h16", quotes: "M9 7H6a2 2 0 0 0-2 2v3h5V7zM9 12c0 3-1 5-4 6M19 7h-3a2 2 0 0 0-2 2v3h5V7zM19 12c0 3-1 5-4 6",
+  wishes: "M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z", loans: "M7 7h13l-3-3M17 17H4l3 3", settings: "M4 7h9M17 7h3M4 17h3M11 17h9M15 5v4M9 15v4",
+  moon: "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z", leaf: "M5 19c0-8 6-14 14-14 0 8-6 14-14 14zM5 19l7-7", back: "M15 5l-7 7 7 7",
+  cam: "M4 8h3l2-3h6l2 3h3v11H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z", bar: "M4 6v12M7 6v12M10 6v12M14 6v12M17 6v12M20 6v12", plus: "M12 5v14M5 12h14",
+  star: "M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"
+};
+function starIco(on) { return '<svg width="14" height="14" viewBox="0 0 24 24" fill="' + (on ? "#E8B45A" : "none") + '" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="' + IC.star + '"/></svg>'; }
+function chip(label, on, a, v, extra) { return '<button type="button" class="chip' + (on ? " on" : "") + '" aria-pressed="' + (on ? "true" : "false") + '" data-a="' + a + '"' + (v != null ? ' data-v="' + esc(v) + '"' : "") + (extra || "") + '>' + label + '</button>'; }
+function sw(on) { return '<span class="sw' + (on ? " on" : "") + '"><i></i></span>'; }
+function coverHTML(b, w, h, fs) {
+  if (b.cover) return '<img class="cover" src="' + esc(b.cover) + '" alt="" style="width:' + w + ';height:' + h + 'px;flex-shrink:0">';
+  return '<div class="cover" style="width:' + w + ';height:' + h + 'px;flex-shrink:0;background:' + SC[b.style] + ';padding:10px 8px 10px 13px;font-size:' + (fs || 14) + 'px">' + (fs ? esc(b.title) : "") + '</div>';
+}
+
+function derive() {
+  var now = Date.now(), nd = new Date(now), y = nd.getFullYear();
+  var yStart = new Date(y, 10, 3).getTime(); if (now < yStart) yStart = new Date(y - 1, 10, 3).getTime();
+  var yEnd = new Date(new Date(yStart).getFullYear() + 1, 10, 3).getTime();
+  var phys = S.books.filter(function (b) { return b.physical; }).slice().sort(function (a, b) { var d = SK.indexOf(a.style) - SK.indexOf(b.style); return d !== 0 ? d : (a.created || 0) - (b.created || 0); });
+  var pos = {}; phys.forEach(function (b, i) { pos[b.id] = i + 1; });
+  var finYear = 0, finTotal = 0; S.books.forEach(function (b) { (b.finishes || []).forEach(function (f) { finTotal++; if (f >= yStart) finYear++; }); });
+  return { now: now, yStart: yStart, yEnd: yEnd, daysIn: Math.max(1, (now - yStart) / DAY), daysLeft: Math.ceil((yEnd - now) / DAY), phys: phys, pos: pos, finYear: finYear, finTotal: finTotal };
+}
+function byId(id) { return S.books.filter(function (b) { return b.id === id; })[0] || null; }
+function pct(b) { return b.pages > 0 ? Math.min(100, Math.round((b.page || 0) / b.pages * 100)) : 0; }
+function progLine(t, b) { return b.pages > 0 ? (t.page + " " + (b.page || 0) + " " + t.of + " " + b.pages) : t.st[b.status]; }
+
+var decorBuilt = false;
+function buildDecor() {
+  if (decorBuilt) return; decorBuilt = true; var h = "";
+  [[10, 14], [85, 11], [46, 36], [23, 55], [77, 66], [56, 24], [36, 81], [92, 45], [5, 72], [66, 88]].forEach(function (p, i) { h += '<div class="dot tw" style="left:' + p[0] + '%;top:' + p[1] + '%;width:3px;height:3px;background:#F2D38A;animation-delay:' + ((i % 5) * 0.7) + 's"></div>'; });
+  [[8, 18, 19, -2, "#8DB88F"], [38, 14, 23, -9, "#C9A45C"], [66, 20, 17, -14, "#6F9A6A"], [90, 12, 26, -5, "#A9BFA0"]].forEach(function (l) { h += '<svg class="leaf" width="' + l[1] + '" height="' + l[1] + '" viewBox="0 0 24 24" style="left:' + l[0] + '%;animation-duration:' + l[2] + 's;animation-delay:' + l[3] + 's"><path d="M12 2C6 6 4 12 6 20c8-1 13-7 12-16-2 0-4-1-6-2z" fill="' + l[4] + '"/></svg>'; });
+  document.getElementById("decor").innerHTML = h;
+}
+
+function splash(t) {
+  return '<div class="splash">' + icon(150, "float") + '<h1 class="serif" style="margin:0;font-size:48px;font-weight:600;line-height:1">7 Vidas</h1><p class="serif mu" style="margin:0;font-size:19px;font-style:italic">' + esc(t.tagline) + '</p><button type="button" class="btn gold" data-a="enter" style="margin-top:18px;min-width:160px">' + esc(t.enter) + '</button><div class="mu" style="position:absolute;bottom:calc(30px + env(safe-area-inset-bottom,0px));left:0;right:0;display:flex;flex-direction:column;gap:2px;font-size:12px"><span>' + sigHTML(t) + '</span><span>' + esc(t.version) + " " + VERSION + '</span></div></div>';
+}
+function header(t) {
+  return '<header class="top"><div class="row">' + icon(38) + '<div><div class="serif" style="font-size:22px;font-weight:600;line-height:1">7 Vidas</div><div class="mu serif" style="font-size:12px;font-style:italic">' + esc(t.tagline) + '</div></div></div><button type="button" class="iconbtn" data-a="theme" aria-label="' + esc(t.switchMode) + '">' + ico(S.night ? IC.leaf : IC.moon) + '</button></header>';
+}
+function activeTab() { return S.screen === "book" ? S.prev : S.screen; }
+function topNav(t) {
+  var a = activeTab(), h = '<nav class="scr" aria-label="' + esc(t.moreNav) + '" style="padding:4px 18px 10px">';
+  ["shelf", "quotes", "wishes", "loans", "settings"].forEach(function (k) { h += '<button type="button" class="chip' + (a === k ? " on" : "") + '" data-a="go" data-v="' + k + '"' + (a === k ? ' aria-current="page"' : "") + '>' + ico(IC[k], 16, 2) + esc(t.nav[k]) + '</button>'; });
+  return h + '</nav>';
+}
+function bottomNav(t) {
+  var a = activeTab(), h = '<nav class="bottom" aria-label="' + esc(t.mainNav) + '">';
+  ["home", "library", "add", "read", "stats"].forEach(function (k) {
+    if (k === "add") h += '<button type="button" class="addbtn" data-a="go" data-v="add" aria-label="' + esc(t.nav.add) + '">' + ico(IC.plus, 26, 2.4) + '</button>';
+    else h += '<button type="button" class="nv' + (a === k ? " on" : "") + '" data-a="go" data-v="' + k + '"' + (a === k ? ' aria-current="page"' : "") + '><span class="pill">' + ico(IC[k], 22) + '</span><small>' + esc(t.nav[k]) + '</small></button>';
+  });
+  return h + '</nav>';
+}
+function catStrip(t) {
+  var sc = S.screen, cur = byId(S.bookId);
+  var key = sc === "home" ? (S.books.length ? "home" : "homeEmpty") : sc === "book" ? (cur && cur.style === "horror" ? "bookH" : "bookG") : sc;
+  var s = t.say[key] || t.say.home;
+  return '<div class="row" style="align-items:flex-end;padding:6px 18px 8px">' + catDuo() + '<p class="bub"><strong style="font-weight:800">' + esc(s[0]) + ':</strong> ' + esc(s[1]) + '</p></div>';
+}
+function emptyCard(t, title, body) { return '<div class="card" style="align-items:center;text-align:center;padding:26px 16px"><div class="serif" style="font-size:21px;font-weight:600">' + esc(title) + '</div><p class="mu" style="margin:0;font-size:14px">' + esc(body) + '</p><button type="button" class="btn acc" data-a="go" data-v="add">' + esc(t.addFirst) + '</button></div>'; }
+
+function vHome(t, D) {
+  var h = '<div class="col"><div class="hero">';
+  for (var i = 0; i < Math.min(D.finTotal, 40); i++) h += '<div class="dot tw" style="left:' + (16 + (i * 67) % 300) + 'px;top:' + (12 + (i * 41) % 70) + 'px;animation-delay:' + ((i % 7) * 0.45) + 's"></div>';
+  h += '<svg class="tw" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="position:absolute;right:30px;top:24px"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#E8B45A"/></svg>';
+  h += '<div style="position:absolute;left:16px;bottom:14px;right:16px"><div class="serif" style="font-size:22px;font-weight:600">' + esc(t.greet) + '</div><div class="mu" style="font-size:13px">' + esc(D.finTotal ? fmt(t.starsOne, "n", D.finTotal) : t.starsZero) + '</div></div></div>';
+  var today = new Date(D.now);
+  if (today.getMonth() === 10 && today.getDate() === 3) h += '<button type="button" class="card pop" data-a="recap" data-v="open" style="border-color:var(--gold)"><span class="serif" style="font-size:19px;font-weight:600;color:var(--gold)">' + esc(t.happy) + '</span><span class="btn gold" style="align-self:flex-start">' + esc(t.recapBtn) + '</span></button>';
+  var pick = S.pickId && byId(S.pickId);
+  h += '<section class="card"><h2 class="h2">' + esc(t.pickTitle) + '</h2><div class="scr">' + chip(esc(t.moodAny), S.mood === "any", "mood", "any") + chip(esc(t.moodFear), S.mood === "horror", "mood", "horror") + chip(esc(t.moodGrow), S.mood === "growth", "mood", "growth") + '</div>';
+  if (pick) h += '<div class="row pop" style="gap:12px">' + coverHTML(pick, "48px", 70) + '<div style="display:flex;flex-direction:column;gap:2px"><span class="mu" style="font-size:12px">' + esc(t.pickResult) + '</span><span class="serif" style="font-size:19px;font-weight:600">' + esc(pick.title) + '</span><span class="mu" style="font-size:13px">' + esc(pick.author) + '</span></div></div><div class="grid2" style="gap:10px"><button type="button" class="btn" data-a="pick">' + esc(t.another) + '</button><button type="button" class="btn gold" data-a="startPick">' + esc(t.startReading) + '</button></div>';
+  else h += (S.pickEmpty ? '<p class="mu" style="margin:0;font-size:14px">' + esc(t.pickNone) + '</p>' : "") + '<button type="button" class="btn gold" data-a="pick">' + esc(t.pickBtn) + '</button>';
+  h += '</section>';
+  if (!S.books.length) h += emptyCard(t, t.emptyLibTitle, t.emptyLibBody);
+  var reading = S.books.filter(function (b) { return b.status === "reading"; });
+  if (reading.length) { h += '<section class="col" style="gap:10px"><h2 class="h2">' + esc(t.readingNow) + '</h2>';
+    reading.forEach(function (b) { h += '<button type="button" class="card" data-a="open" data-v="' + b.id + '" style="flex-direction:row;align-items:center;gap:14px">' + coverHTML(b, "52px", 78) + '<span style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0"><span class="serif" style="font-size:17px;font-weight:600">' + esc(b.title) + '</span><span class="mu" style="font-size:13px">' + esc(b.author) + '</span><span style="height:5px;border-radius:3px;background:var(--ln);overflow:hidden"><span class="bar" style="display:block;height:100%;width:' + pct(b) + '%;background:var(--gold)"></span></span><span class="mu" style="font-size:12px">' + esc(progLine(t, b)) + '</span></span></button>'; });
+    h += '</section>'; }
+  var lin = S.loans.filter(function (l) { return l.dir === "in"; }).length;
+  if (lin) h += '<button type="button" class="card" data-a="go" data-v="loans" style="flex-direction:row;align-items:center;border-color:var(--gold)"><span style="color:var(--gold)">' + ico(IC.loans, 22, 2) + '</span><span style="font-size:14px;font-weight:700">' + esc(fmt(t.loanAlert, "n", lin)) + '</span></button>';
+  h += '<section class="card"><h2 class="h2">' + esc(t.quoteDay) + '</h2>';
+  if (S.quotes.length) { var q = S.quotes[Math.floor(D.now / DAY) % S.quotes.length]; h += '<p class="serif" style="margin:0;font-size:17px;font-style:italic;line-height:1.45">«' + esc(q.text) + '»</p><span class="mu" style="font-size:13px">' + esc(q.book) + '</span>'; }
+  else h += '<p class="mu" style="margin:0;font-size:14px">' + esc(t.noQuote) + '</p>';
+  return h + '</section></div>';
+}
+function vLibrary(t) {
+  var f = S.filter, c = S.coll;
+  var grid = S.books.filter(function (b) { var ok = f === "all" || (f === "physical" && b.physical) || (f === "reread" && b.reads >= 2) || b.status === f; if (c) ok = ok && (c.type === "author" ? b.author === c.v : b.style === c.v); return ok; });
+  var h = '<div class="col"><div class="row" style="justify-content:space-between;align-items:baseline"><h1 class="h1">' + esc(t.nav.library) + '</h1><span class="mu" style="font-size:13px">' + esc(fmt(t.books, "n", S.books.length)) + '</span></div><div class="scr">';
+  ["all", "physical", "reading", "read", "toread", "reread"].forEach(function (k) { h += chip(esc(t.f[k]), f === k, "filter", k); });
+  h += '</div>';
+  if (S.placed) h += '<div class="card pop" style="flex-direction:row;align-items:center;border-color:var(--gold)">' + ico(IC.shelf, 22, 2) + '<span style="font-size:14px;font-weight:700"><strong>Frida:</strong> ' + esc(S.placed) + '</span></div>';
+  if (c) h += '<button type="button" class="chip on" data-a="clearColl" style="align-self:flex-start">' + esc(c.type === "author" ? c.v : t.styles[c.v]) + ' ✕</button>';
+  if (!S.books.length) return h + emptyCard(t, t.emptyLibTitle, t.emptyLibBody) + '</div>';
+  if (!grid.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.noMatch) + '</p>';
+  h += '<div class="grid3">';
+  grid.forEach(function (b) { h += '<button type="button" data-a="open" data-v="' + b.id + '" style="border:none;background:none;padding:0;text-align:left;display:flex;flex-direction:column;gap:5px">' + coverHTML(b, "100%", 150, 14) + '<span style="font-size:13px;font-weight:800;line-height:1.2">' + esc(b.title) + '</span><span class="mu" style="font-size:12px">' + esc(t.st[b.status]) + (b.reads >= 2 ? " · ×" + b.reads : "") + '</span></button>'; });
+  h += '</div>';
+  var ac = {}, stc = {}; S.books.forEach(function (b) { if (b.author) ac[b.author] = (ac[b.author] || 0) + 1; stc[b.style] = (stc[b.style] || 0) + 1; });
+  var cols = []; Object.keys(ac).filter(function (a) { return ac[a] >= 2; }).sort(function (a, b) { return ac[b] - ac[a]; }).forEach(function (a) { cols.push(["author", a, a, t.byAuthor, ac[a]]); });
+  SK.forEach(function (k) { if (stc[k]) cols.push(["style", k, t.styles[k], t.byStyle, stc[k]]); });
+  if (cols.length) { h += '<section class="col" style="gap:8px"><h2 class="h2">' + esc(t.collections) + '</h2><div class="card" style="padding:4px 0;gap:0">';
+    cols.forEach(function (x, i) { h += '<button type="button" data-a="coll" data-v="' + esc(x[0] + "|" + x[1]) + '" style="display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 16px;border:none;border-top:1px solid ' + (i ? "var(--ln)" : "transparent") + ';background:transparent;text-align:left;width:100%"><span style="display:flex;flex-direction:column"><span style="font-size:15px;font-weight:800">' + esc(x[2]) + '</span><span class="mu" style="font-size:12px">' + esc(x[3]) + '</span></span><span class="serif" style="font-size:20px;color:var(--gold)">' + x[4] + '</span></button>'; });
+    h += '</div></section>'; }
+  return h + '</div>';
+}
+function vAdd(t) {
+  var F = S.f, h = '<div class="col"><h1 class="h1">' + esc(S.editId ? t.editTitle : t.addTitle) + '</h1><div class="row" style="align-items:stretch;gap:14px">';
+  h += '<label style="position:relative;width:110px;height:160px;flex-shrink:0;border-radius:6px 12px 12px 6px;border:2px dashed var(--ln);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;cursor:pointer;color:var(--mu);font-size:12px;font-weight:800;text-align:center;padding:8px">' +
+    (F.photo ? '<img src="' + esc(F.photo) + '" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' : "") + ico(IC.cam, 26) + '<span>' + esc(F.busy ? t.busy : t.takePhoto) + '</span><input id="photo" type="file" accept="image/*" aria-label="' + esc(t.photo) + '" style="position:absolute;width:1px;height:1px;opacity:0"></label>';
+  h += '<div style="flex:1;display:flex;flex-direction:column;gap:10px;min-width:0"><button type="button" class="btn" data-a="scan" style="justify-content:flex-start">' + ico(IC.bar, 18, 2) + esc(F.scanning ? t.closeCam : t.scan) + '</button>' +
+    '<label class="lab">' + esc(t.fTitle) + '<input class="in" type="text" data-f="f.title" value="' + esc(F.title) + '"></label></div></div>';
+  if (F.showIsbn) h += '<div class="card pop" style="gap:10px">' + (F.scanning ? '<video id="scanVideo" class="scanv" playsinline muted></video>' : "") + '<div class="row" style="gap:8px"><input class="in" type="text" inputmode="numeric" data-f="f.isbn" value="' + esc(F.isbn) + '" placeholder="' + esc(t.isbnPh) + '" aria-label="' + esc(t.isbn) + '"><button type="button" class="btn acc" data-a="lookup">' + esc(t.lookup) + '</button></div>' + (F.isbnMsg ? '<p class="mu" style="margin:0;font-size:13px">' + esc(F.isbnMsg) + '</p>' : "") + '</div>';
+  if (F.err) h += '<p class="err" data-err="f">' + esc(t.needTitle) + '</p>';
+  h += '<label class="lab">' + esc(t.fAuthor) + '<input class="in" type="text" data-f="f.author" value="' + esc(F.author) + '"></label>';
+  h += '<div class="lab">' + esc(t.fStyle) + '<div class="wrapchips">'; SK.forEach(function (k) { h += chip(esc(t.styles[k]), F.style === k, "fstyle", k); }); h += '</div></div>';
+  h += '<div class="lab">' + esc(t.fStatus) + '<div class="wrapchips">'; ["toread", "reading", "read"].forEach(function (k) { h += chip(esc(t.st[k]), F.status === k, "fstatus", k); }); h += '</div></div>';
+  h += '<div class="row" style="align-items:flex-end;gap:12px"><label class="lab" style="width:120px">' + esc(t.fPages) + '<input class="in" type="number" min="0" inputmode="numeric" data-f="f.pages" value="' + esc(F.pages) + '"></label><button type="button" class="card" data-a="fphys" aria-pressed="' + F.physical + '" style="flex:1;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 14px"><span style="font-size:14px;font-weight:700">' + esc(t.fPhysical) + '</span>' + sw(F.physical) + '</button></div>';
+  if (S.editId) return h + '<div class="grid2" style="gap:10px"><button type="button" class="btn" data-a="cancelEdit" style="min-height:50px">' + esc(t.cancel) + '</button><button type="button" class="btn gold" data-a="saveBook" style="min-height:50px;font-size:15px">' + esc(t.save) + '</button></div></div>';
+  return h + '<button type="button" class="btn gold" data-a="saveBook" style="min-height:50px;font-size:15px">' + esc(t.save) + '</button></div>';
+}
+function clockText() { var s = S.r.timer, p = function (n) { return (n < 10 ? "0" : "") + n; }; return (s >= 3600 ? Math.floor(s / 3600) + ":" : "") + p(Math.floor(s % 3600 / 60)) + ":" + p(s % 60); }
+function vRead(t) {
+  var R = S.r, idle = !R.running && !R.after;
+  var h = '<div class="col" style="align-items:center;text-align:center"><span class="h2">' + esc(t.nav.read) + '</span><h1 class="h1" style="margin-top:-8px">' + esc(t.readTitle) + '</h1><div id="clock" class="serif" style="font-size:56px;line-height:1">' + clockText() + '</div>';
+  h += '<div style="position:relative;width:250px;height:112px">' + (R.running ? '<span class="z" style="left:120px;top:18px">z</span><span class="z" style="left:196px;top:42px;animation-delay:1.5s">z</span>' : "") +
+    '<svg width="250" height="112" viewBox="0 0 240 110" aria-hidden="true"><ellipse cx="120" cy="100" rx="110" ry="8" style="fill:var(--sf)"/><g class="breathe"><path d="M40 98c-4-20 10-36 40-36s46 14 42 36z" fill="#D9822B"/><ellipse cx="82" cy="86" rx="22" ry="10" fill="#F2B874"/></g><path d="M40 96c-10 2-12-10-2-12" fill="none" stroke="#D9822B" stroke-width="7" stroke-linecap="round"/><circle cx="118" cy="80" r="17" fill="#D9822B"/><path d="M104 70l-2-14 12 8zM132 70l2-14-12 8z" fill="#D9822B"/><path d="M109 81q4 3 8 0M121 81q4 3 8 0" fill="none" stroke="#5A3212" stroke-width="1.6" stroke-linecap="round"/><g class="breathe" style="animation-delay:1s"><path d="M150 98c-3-14 7-25 28-25s32 10 29 25z" fill="#E3C27E"/></g><circle cx="206" cy="86" r="12" fill="#E3C27E"/><path d="M196 79l-1-10 8 6zM216 79l1-10-8 6z" fill="#E3C27E"/><path d="M200 87q3 2 6 0M208 87q3 2 6 0" fill="none" stroke="#6A5422" stroke-width="1.4" stroke-linecap="round"/><path d="M152 96c-6 0-8-4-5-6" fill="none" stroke="#E3C27E" stroke-width="5" stroke-linecap="round"/></svg></div>';
+  if (idle) { h += '<div class="lab" style="width:100%;text-align:left">' + esc(t.which) + '<div class="scr">' + chip(esc(t.noBook), !R.book, "rbook", "");
+    S.books.filter(function (b) { return b.status !== "read"; }).forEach(function (b) { h += chip(esc(b.title), R.book === b.id, "rbook", b.id); }); h += '</div></div>'; }
+  h += '<div class="wrapchips" style="justify-content:center">'; ["purr", "rain", "forest"].forEach(function (k) { h += chip(esc(t.snd[k]), !!S.sounds[k], "snd", k); }); h += '</div>';
+  if (idle) h += '<button type="button" class="btn gold" data-a="startRead" style="width:100%;min-height:52px;font-size:15px">' + esc(t.enterBtn) + '</button>';
+  if (R.running) h += '<button type="button" class="btn gold" data-a="stopRead" style="width:100%;min-height:52px;font-size:15px">' + esc(t.exitBtn) + '</button>';
+  if (R.after) { h += '<div class="card pop">' + (R.book ? '<label class="lab">' + esc(t.pageQ) + '<input class="in" type="number" min="0" inputmode="numeric" data-f="r.page" value="' + esc(R.page) + '"></label>' : "") + '<div class="lab">' + esc(t.vidasQ) + '<div class="wrapchips">';
+    VK.forEach(function (k) { h += chip(starIco(!!R.vidas[k]) + esc(t.vidas[k]), !!R.vidas[k], "rvida", k); }); h += '</div></div><button type="button" class="btn gold" data-a="saveSession">' + esc(t.saveSession) + '</button></div>'; }
+  return h + '</div>';
+}
+function vStats(t, D) {
+  var mins = 0, pgs = 0; S.sessions.forEach(function (x) { mins += x.mins || 0; pgs += x.pages || 0; });
+  var rr = S.books.filter(function (b) { return b.reads >= 2; }).length;
+  var M = [[(D.finYear / (D.daysIn / 7)).toFixed(1), t.mWeek], [(D.finYear / (D.daysIn / 30.44)).toFixed(1), t.mMonth], [D.finYear, t.mYear], [mins, t.mMin], [mins > 0 ? Math.round(pgs / (mins / 60)) : 0, t.mPph], [rr, t.mReread]];
+  var h = '<div class="col"><h1 class="h1">' + esc(t.nav.stats) + '</h1>' + recapHTML(t, D) + '<div class="grid2">';
+  M.forEach(function (m) { h += '<div class="card" style="gap:2px;padding:14px"><span class="serif" style="font-size:30px;font-weight:600;line-height:1.05">' + m[0] + '</span><span class="mu" style="font-size:12px;line-height:1.3">' + esc(m[1]) + '</span></div>'; });
+  h += '</div><section class="card"><h2 class="h2">' + esc(t.year) + '</h2><div class="serif" style="font-size:18px">' + esc(t.yearEnds) + '</div><div style="height:8px;border-radius:4px;background:var(--ln);overflow:hidden"><div class="bar" style="height:100%;width:' + Math.round(D.daysIn / ((D.yEnd - D.yStart) / DAY) * 100) + '%;background:var(--gold)"></div></div><span class="mu" style="font-size:13px">' + esc(fmt(t.daysLeft, "d", D.daysLeft)) + '</span></section>';
+  var vc = {}; VK.forEach(function (k) { vc[k] = 0; });
+  S.books.forEach(function (b) { VK.forEach(function (k) { if (b.vidas && b.vidas[k]) vc[k]++; }); });
+  S.sessions.forEach(function (x) { VK.forEach(function (k) { if (x.vidas && x.vidas[k]) vc[k]++; }); });
+  var P = [[30, 90], [80, 45], [130, 75], [180, 32], [222, 80], [266, 50], [295, 100]];
+  h += '<section class="card"><h2 class="h2">' + esc(t.constellation) + '</h2><svg width="100%" height="130" viewBox="0 0 320 130" aria-hidden="true"><path d="M30 90L80 45L130 75L180 32L222 80L266 50L295 100" fill="none" style="stroke:var(--ln)" stroke-width="1.2" stroke-dasharray="3 4"/>';
+  VK.forEach(function (k, i) { var n = vc[k]; h += '<circle class="' + (n ? "tw" : "") + '" cx="' + P[i][0] + '" cy="' + P[i][1] + '" r="' + (n ? 4 + Math.min(n, 6) : 3.5) + '" style="fill:' + (n ? (i === 3 ? "#E8B45A" : "#F2D38A") : "var(--ln)") + ';animation-delay:' + (i * 0.4) + 's"/>'; });
+  h += '</svg><div class="wrapchips" style="gap:6px">';
+  VK.forEach(function (k) { h += '<span style="font-size:12px;padding:4px 10px;border-radius:12px;border:1px solid var(--ln);color:' + (vc[k] ? "var(--gold)" : "var(--mu)") + '">' + esc(t.vidas[k]) + ' · ' + vc[k] + '</span>'; });
+  var top = VK.slice().sort(function (a, b) { return vc[b] - vc[a]; })[0];
+  h += '</div><p class="mu" style="margin:0;font-size:14px">' + esc(vc[top] ? fmt(t.topVida, "v", t.vidas[top].toLowerCase()) : t.constEmpty) + '</p></section>';
+  var ac = {}; S.books.forEach(function (b) { if (b.reads > 0 && b.author) ac[b.author] = (ac[b.author] || 0) + b.reads; });
+  var ta = Object.keys(ac).sort(function (a, b) { return ac[b] - ac[a]; }).slice(0, 3);
+  h += '<section class="card"><h2 class="h2">' + esc(t.topAuthors) + '</h2>';
+  if (ta.length) ta.forEach(function (a) { h += '<div class="row" style="justify-content:space-between;font-size:15px"><span style="font-weight:700">' + esc(a) + '</span><span class="serif" style="color:var(--gold)">' + ac[a] + '</span></div>'; });
+  else h += '<p class="mu" style="margin:0;font-size:14px">' + esc(t.noData) + '</p>';
+  return h + '</section></div>';
+}
+function recapHTML(t, D) {
+  if (!S.showRecap) return '<button type="button" class="btn gold" data-a="recap" data-v="open">' + esc(t.recapBtn) + '</button>';
+  var ac = {}, vc = {}, n = 0; VK.forEach(function (k) { vc[k] = 0; });
+  S.books.forEach(function (b) { var f = (b.finishes || []).filter(function (x) { return x >= D.yStart; }).length; if (!f) return; n += f; if (b.author) ac[b.author] = (ac[b.author] || 0) + f; VK.forEach(function (k) { if (b.vidas && b.vidas[k]) vc[k]++; }); });
+  S.sessions.forEach(function (x) { if (x.at >= D.yStart) VK.forEach(function (k) { if (x.vidas && x.vidas[k]) vc[k]++; }); });
+  var ta = Object.keys(ac).sort(function (a, b) { return ac[b] - ac[a]; })[0], tv = VK.slice().sort(function (a, b) { return vc[b] - vc[a]; })[0], q = S.quotes[S.quotes.length - 1];
+  var h = '<section class="card pop" style="border-color:var(--gold);gap:14px"><div class="row" style="justify-content:space-between"><h2 class="h2" style="color:var(--gold)">' + esc(t.recapTitle) + '</h2><button type="button" class="x" data-a="recap" data-v="close" aria-label="' + esc(t.cancel) + '">✕</button></div>';
+  if (!n) return h + '<p class="mu" style="margin:0">' + esc(t.recapNone) + '</p></section>';
+  h += '<div><div class="big">' + n + '</div><div class="mu">' + esc(t.recapBooks) + '</div></div>';
+  if (ta) h += '<div><div class="h2">' + esc(t.recapAuthor) + '</div><div class="serif" style="font-size:22px;font-weight:600">' + esc(ta) + '</div></div>';
+  if (vc[tv]) h += '<div><div class="h2">' + esc(t.recapVida) + '</div><div class="serif" style="font-size:22px;font-weight:600">' + esc(t.vidas[tv]) + '</div></div>';
+  if (q) h += '<div><div class="h2">' + esc(t.recapQuote) + '</div><p class="serif" style="margin:4px 0 0;font-style:italic;font-size:17px">«' + esc(q.text) + '»</p></div>';
+  return h + '</section>';
+}
+function vShelf(t, D) {
+  var h = '<div class="col"><div><h1 class="h1">' + esc(t.shelfTitle) + '</h1><div class="mu" style="font-size:13px;margin-top:4px">' + esc(t.shelfSub) + '</div></div>';
+  var P = D.phys, n = P.length, PER = 25;
+  if (!n) return h + '<div class="card" style="align-items:center;text-align:center"><p class="mu" style="margin:0;font-size:14px">' + esc(t.emptyShelf) + '</p><button type="button" class="btn acc" data-a="go" data-v="add">' + esc(t.addFirst) + '</button></div></div>';
+  var nS = Math.ceil(n / PER), sel = Math.min(S.shelfSel, nS - 1);
+  h += '<div class="row" style="gap:8px"><input class="in" type="number" min="1" inputmode="numeric" data-f="find" value="' + esc(S.find) + '" placeholder="' + esc(t.find) + '" aria-label="' + esc(t.find) + '" style="border-radius:22px"><button type="button" class="btn acc" data-a="find">' + esc(t.findBtn) + '</button></div>';
+  if (S.findErr) h += '<p class="err" data-err="find">' + esc(S.findErr) + '</p>';
+  h += '<div class="case">';
+  for (var s = 0; s < nS; s++) { h += '<button type="button" class="shelfbtn' + (s === sel ? " on" : "") + '" data-a="shelf" data-v="' + s + '" aria-label="' + esc(t.shelfN + " " + (s + 1)) + '"><span class="shelfrow">';
+    P.slice(s * PER, s * PER + PER).forEach(function (b, j) { var k = s * PER + j + 1; h += '<span class="mini' + (S.hit === k ? " hit" : "") + '" style="height:' + (36 + (k * 37) % 20) + 'px;background:' + SC[b.style] + '"></span>'; });
+    h += '</span><span class="shelflbl"><span>' + esc(t.shelfN) + " " + (s + 1) + '</span><span>N° ' + (s * PER + 1) + '–' + Math.min(n, s * PER + PER) + '</span></span></button>'; }
+  h += '</div>';
+  var inS = Math.min(PER, n - sel * PER), zPages = Math.ceil(inS / 10), zp = Math.min(S.zPage, zPages - 1), z0 = sel * PER + zp * 10, z1 = Math.min(z0 + 10, sel * PER + inS);
+  h += '<div class="card" style="gap:10px"><div class="row" style="justify-content:space-between"><button type="button" class="btn" data-a="zprev" aria-label="‹" style="width:44px;padding:0">‹</button><span style="font-size:13px;font-weight:700">' + esc(t.shelfN) + " " + (sel + 1) + " · N° " + (z0 + 1) + "–" + z1 + '</span><button type="button" class="btn" data-a="znext" aria-label="›" style="width:44px;padding:0">›</button></div><div class="zrow">';
+  P.slice(z0, z1).forEach(function (b, j) { var k = z0 + j + 1; h += '<button type="button" class="zb pop' + (S.hit === k ? " hit" : "") + '" data-a="open" data-v="' + b.id + '" style="height:' + (96 + (k * 37) % 42) + 'px;background:' + SC[b.style] + '"><span class="v">' + esc(b.title) + '</span><span style="font-size:12px;font-weight:800">' + k + '</span></button>'; });
+  return h + '</div></div></div>';
+}
+function vQuotes(t) {
+  var h = '<div class="col"><h1 class="h1">' + esc(t.nav.quotes) + '</h1><div class="card"><label class="lab">' + esc(t.qText) + '<textarea class="in" data-f="q.text">' + esc(S.q.text) + '</textarea></label><label class="lab">' + esc(t.qBook) + '<input class="in" type="text" list="booklist" data-f="q.book" value="' + esc(S.q.book) + '"></label>' + bookList() + '' + (S.q.err ? '<p class="err" data-err="q">' + esc(t.needText) + '</p>' : "") + '<button type="button" class="btn gold" data-a="qsave">' + esc(t.addQuote) + '</button></div>';
+  if (!S.quotes.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.emptyQ) + '</p>';
+  S.quotes.slice().reverse().forEach(function (q) { h += '<article class="card" style="gap:6px"><p class="serif" style="margin:0;font-size:17px;font-style:italic;line-height:1.45">«' + esc(q.text) + '»</p><div class="row" style="justify-content:space-between"><span class="mu" style="font-size:13px">' + esc(q.book) + '</span><button type="button" class="x" data-a="qdel" data-v="' + esc(q.id) + '" aria-label="' + esc(t.remove) + '">✕</button></div></article>'; });
+  return h + '</div>';
+}
+function bookList() { var h = '<datalist id="booklist">'; S.books.forEach(function (b) { h += '<option value="' + esc(b.title) + '">'; }); return h + '</datalist>'; }
+function vWishes(t) {
+  var W = S.w, h = '<div class="col"><h1 class="h1">' + esc(t.nav.wishes) + '</h1><div class="card"><label class="lab">' + esc(t.fTitle) + '<input class="in" type="text" data-f="w.title" value="' + esc(W.title) + '"></label><label class="lab">' + esc(t.fAuthor) + '<input class="in" type="text" data-f="w.author" value="' + esc(W.author) + '"></label><label class="lab">' + esc(t.wWhere) + '<input class="in" type="text" data-f="w.where" value="' + esc(W.where) + '"></label>' + (W.err ? '<p class="err" data-err="w">' + esc(t.needTitle) + '</p>' : "") + '<button type="button" class="btn gold" data-a="wsave">' + esc(t.addWish) + '</button></div>';
+  if (!S.wishes.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.emptyW) + '</p>';
+  S.wishes.forEach(function (w) { h += '<article class="card" style="flex-direction:row;align-items:center;justify-content:space-between"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="serif" style="font-size:17px;font-weight:600">' + esc(w.title) + '</span><span class="mu" style="font-size:13px">' + esc([w.author, w.where].filter(Boolean).join(" · ")) + '</span></span><span class="row" style="gap:6px;flex-shrink:0"><button type="button" class="btn acc" data-a="wgot" data-v="' + w.id + '">' + esc(t.got) + '</button><button type="button" class="x" data-a="wdel" data-v="' + w.id + '" aria-label="' + esc(t.remove) + '">✕</button></span></article>'; });
+  return h + '</div>';
+}
+function vLoans(t, D) {
+  var Lf = S.l, h = '<div class="col"><h1 class="h1">' + esc(t.nav.loans) + '</h1><div class="grid2" style="gap:8px">' + chip(esc(t.tabIn), Lf.tab === "in", "ltab", "in") + chip(esc(t.tabOut), Lf.tab === "out", "ltab", "out") + '</div>';
+  h += '<div class="card"><label class="lab">' + esc(t.lTitle) + '<input class="in" type="text" list="booklist" data-f="l.title" value="' + esc(Lf.title) + '"></label>' + bookList() + '<label class="lab">' + esc(Lf.tab === "in" ? t.lFrom : t.lTo) + '<input class="in" type="text" data-f="l.person" value="' + esc(Lf.person) + '"></label>' + (Lf.err ? '<p class="err" data-err="l">' + esc(t.needLoan) + '</p>' : "") + '<button type="button" class="btn gold" data-a="lsave">' + esc(t.addLoan) + '</button></div>';
+  var list = S.loans.filter(function (l) { return l.dir === Lf.tab; });
+  if (!list.length) h += '<p class="mu" style="margin:8px 0;text-align:center;font-style:italic">' + esc(t.emptyL) + '</p>';
+  list.forEach(function (l) { var d = Math.floor((D.now - l.at) / DAY); h += '<article class="card" style="flex-direction:row;align-items:center;justify-content:space-between"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span class="serif" style="font-size:17px;font-weight:600">' + esc(l.title) + '</span><span class="mu" style="font-size:13px">' + esc((l.dir === "in" ? t.from : t.to) + " " + l.person + " · " + fmt(t.daysAgo, "d", d)) + '</span></span><button type="button" class="btn" data-a="ldone" data-v="' + l.id + '" style="flex-shrink:0">' + esc(t.returned) + '</button></article>'; });
+  return h + '</div>';
+}
+function vSettings(t) {
+  var h = '<div class="col" style="gap:18px"><h1 class="h1">' + esc(t.nav.settings) + '</h1>';
+  h += '<section class="col" style="gap:10px"><h2 class="h2">' + esc(t.language) + '</h2><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">' + chip("Español", S.lang === "es", "lang", "es", ' style="min-height:48px"') + chip("English", S.lang === "en", "lang", "en", ' style="min-height:48px"') + chip("Italiano", S.lang === "it", "lang", "it", ' style="min-height:48px"') + '</div></section>';
+  h += '<section class="col" style="gap:10px"><h2 class="h2">' + esc(t.mode) + '</h2><div class="grid2" style="gap:8px">' + chip(esc(t.night), S.night, "mode", "night", ' style="min-height:48px"') + chip(esc(t.moss), !S.night, "mode", "moss", ' style="min-height:48px"') + '</div></section>';
+  h += '<section class="col" style="gap:10px"><h2 class="h2">' + esc(t.soundsT) + '</h2><div class="wrapchips">'; ["purr", "rain", "forest"].forEach(function (k) { h += chip(esc(t.snd[k]), !!S.sounds[k], "snd", k); }); h += '</div></section>';
+  h += '<section class="col" style="gap:10px"><h2 class="h2">' + esc(t.backup) + '</h2><p class="mu" style="margin:0;font-size:13px">' + esc(S.sync === "cloud" ? t.syncCloud : t.syncLocal) + '</p><div style="display:grid;gap:8px"><button type="button" class="btn" data-a="export">' + esc(t.export) + '</button><label class="btn" style="position:relative;cursor:pointer">' + esc(t.import) + '<input id="importFile" type="file" accept="application/json,.json" aria-label="' + esc(t.import) + '" style="position:absolute;width:1px;height:1px;opacity:0"></label><button type="button" class="btn acc" data-a="install">' + esc(t.install) + '</button></div>' + (S.msg ? '<p class="mu pop" style="margin:0;font-size:13px">' + esc(S.msg) + '</p>' : "") + '</section>';
+  h += '<section class="card" style="align-items:center;text-align:center;gap:8px;padding:24px 16px">' + icon(84, "float") + '<div class="serif" style="font-size:26px;font-weight:600">7 Vidas</div><div class="serif mu" style="font-style:italic">' + esc(t.tagline) + '</div><div class="mu" style="font-size:12px">' + esc(t.version) + " " + VERSION + '</div><div class="mu" style="font-size:12px">' + sigHTML(t) + '</div></section>';
+  return h + '</div>';
+}
+function vBook(t, D) {
+  var b = byId(S.bookId); if (!b) return "";
+  var h = '<div class="col"><div class="row" style="justify-content:space-between"><button type="button" class="btn" data-a="back" style="border:none;padding:0 8px 0 0">' + ico(IC.back, 20, 2) + esc(t.back) + '</button><button type="button" class="btn" data-a="edit">' + esc(t.edit) + '</button></div>';
+  h += '<div class="row" style="align-items:flex-end;gap:16px"><div class="float">' + coverHTML(b, "116px", 172, 17) + '</div><div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--sf2);color:var(--ac)">' + esc(t.styles[b.style]) + '</span><h1 class="h1" style="font-size:25px">' + esc(b.title) + '</h1><span class="mu" style="font-size:14px">' + esc(b.author) + '</span><span style="font-size:13px;color:var(--gold);font-weight:700">' + esc(D.pos[b.id] ? fmt(t.shelfLine, "n", D.pos[b.id]) : t.notShelf) + '</span></div></div>';
+  h += '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">'; ["toread", "reading", "read"].forEach(function (k) { h += chip(esc(t.st[k]), b.status === k, "status", k, ' style="min-height:44px"'); }); h += '</div>';
+  h += '<button type="button" class="card" data-a="curphys" aria-pressed="' + !!b.physical + '" style="flex-direction:row;align-items:center;justify-content:space-between;padding:12px 16px"><span style="font-size:14px;font-weight:700">' + esc(t.fPhysical) + '</span>' + sw(b.physical) + '</button>';
+  if (b.pages > 0) h += '<section class="card"><div class="row" style="justify-content:space-between;align-items:baseline"><h2 class="h2">' + esc(t.progress) + '</h2><span class="serif" style="font-size:24px">' + pct(b) + '%</span></div><div style="height:8px;border-radius:4px;background:var(--ln);overflow:hidden"><div class="bar" style="height:100%;width:' + pct(b) + '%;background:var(--gold)"></div></div><div class="row" style="justify-content:space-between"><span class="mu" style="font-size:13px">' + esc(progLine(t, b)) + '</span><span class="row" style="gap:8px"><button type="button" class="btn" data-a="page" data-v="-10">−10</button><button type="button" class="btn gold" data-a="page" data-v="10">+10</button></span></div></section>';
+  h += '<section class="card" style="flex-direction:row;align-items:center;justify-content:space-between"><span style="font-size:15px;font-weight:700">' + esc(b.reads > 0 ? fmt(t.reads, "n", b.reads) : t.readsZero) + '</span><button type="button" class="btn" data-a="reread">' + esc(t.reread) + '</button></section>';
+  h += '<section class="card"><h2 class="h2">' + esc(t.rating) + '</h2><div class="row" style="gap:4px">';
+  for (var n = 1; n <= 5; n++) h += '<button type="button" data-a="paw" data-v="' + n + '" aria-label="' + esc(fmt(t.paw, "n", n)) + '" style="width:44px;height:44px;border:none;background:transparent;padding:0"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" style="fill:' + (n <= (b.rating || 0) ? "#E8B45A" : "var(--ln)") + '"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><circle cx="6" cy="10" r="2.2"/><circle cx="10" cy="6.5" r="2.2"/><circle cx="14" cy="6.5" r="2.2"/><circle cx="18" cy="10" r="2.2"/></svg></button>';
+  h += '</div></section>';
+  if (b.style === "horror") { h += '<section class="card"><h2 class="h2">' + esc(t.fear) + '</h2><div class="row" style="gap:4px">';
+    for (var m = 1; m <= 5; m++) { var lit = m <= (b.fear || 0); h += '<button type="button" data-a="candle" data-v="' + m + '" aria-label="' + esc(fmt(t.candle, "n", m)) + '" style="width:44px;height:44px;border:none;background:transparent;padding:0"><svg width="24" height="30" viewBox="0 0 22 26" aria-hidden="true"><path d="M11 2c3 3.4 3 6.4 0 8.4-3-2-3-5 0-8.4z" style="fill:' + (lit ? "#E8B45A" : "transparent") + '"/><rect x="7.5" y="12" width="7" height="12" rx="1.5" style="fill:' + (lit ? "#F1EADB" : "var(--ln)") + '"/></svg></button>'; }
+    h += '</div></section>'; }
+  h += '<section class="card"><h2 class="h2">' + esc(t.vidasBook) + '</h2><div class="wrapchips">'; VK.forEach(function (k) { var on = !!(b.vidas && b.vidas[k]); h += chip(starIco(on) + esc(t.vidas[k]), on, "vida", k); }); h += '</div></section>';
+  h += '<section class="card"><h2 class="h2">' + esc(t.bookQuotes) + '</h2>';
+  S.quotes.filter(function (q) { return q.bookId === b.id; }).forEach(function (q) { h += '<p class="serif" style="margin:0;font-style:italic;font-size:15px">«' + esc(q.text) + '»</p>'; });
+  h += '<textarea class="in" data-f="bq" placeholder="' + esc(t.qText) + '" aria-label="' + esc(t.qText) + '" style="min-height:64px">' + esc(S.bq) + '</textarea><button type="button" class="btn" data-a="bquote">' + esc(t.addQuote) + '</button></section>';
+  h += '<label class="lab">' + esc(t.notes) + '<textarea class="in" data-f="note" placeholder="' + esc(t.notePh) + '">' + esc(b.note) + '</textarea></label>';
+  h += '<button type="button" class="btn" data-a="del" style="color:var(--err);border-color:' + (S.delArm ? "var(--err)" : "var(--ln)") + '">' + esc(S.delArm ? t.delConfirm : t.del) + '</button>';
+  return h + '</div>';
+}
+
+var $app = document.getElementById("app"), lastScreen = null;
+function render() {
+  var t = T(), D = derive();
+  document.documentElement.lang = S.lang;
+  document.body.className = S.night ? "t-night" : "t-moss";
+  var anim = S.screen !== lastScreen, m0 = $app.querySelector("main"), keep = !anim && m0 ? m0.scrollTop : 0;
+  if (S.screen === "splash") { $app.innerHTML = splash(t); lastScreen = "splash"; return; }
+  var V = { home: vHome, library: vLibrary, add: vAdd, read: vRead, stats: vStats, shelf: vShelf, quotes: vQuotes, wishes: vWishes, loans: vLoans, settings: vSettings, book: vBook }[S.screen] || vHome;
+  $app.innerHTML = '<div class="shell"><main>' + header(t) + topNav(t) + catStrip(t) + '<div class="wrap"><div class="' + (anim ? "page" : "") + '">' + V(t, D) + '</div><p class="foot mu">' + sigHTML(t) + " · " + VERSION + '</p></div></main>' + bottomNav(t) + '</div>';
+  var m = $app.querySelector("main"); if (m) m.scrollTop = keep;
+  if (scanStream) { var vv = document.getElementById("scanVideo"); if (vv) { vv.srcObject = scanStream; vv.play().catch(function () {}); } }
+  lastScreen = S.screen;
+}
+function go(sc) {
+  if (S.screen !== "book") S.prev = S.screen === "splash" ? "home" : S.screen;
+  if (S.screen === "add" && sc !== "add") stopScan();
+  if (sc === "add" && S.editId) { S.editId = null; S.f = blankForm(S.f.style); }
+  S.screen = sc; S.msg = ""; S.delArm = false; S.placed = S.placedNext; S.placedNext = ""; if (sc !== "stats") S.showRecap = false;
+  render(); var mm = $app.querySelector("main"); if (mm) mm.scrollTop = 0;
+}
+function patchBook(id, p) { S.books = S.books.map(function (b) { return b.id === id ? Object.assign({}, b, p) : b; }); touchBook(id); }
+function finishPatch(b, extra) { return Object.assign({ status: "read", reads: (b.reads || 0) + 1, finishes: (b.finishes || []).concat([Date.now()]) }, extra || {}); }
+var timerIv = null;
+var AC = null, SN = {};
+function audio() { var C = window.AudioContext || window.webkitAudioContext; if (!C) return null; if (!AC) AC = new C(); if (AC.state === "suspended") AC.resume(); return AC; }
+function noise(ac, brown) { var n = ac.sampleRate * 3, b = ac.createBuffer(1, n, ac.sampleRate), d = b.getChannelData(0), last = 0; for (var i = 0; i < n; i++) { var w = Math.random() * 2 - 1; if (brown) { last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; } else d[i] = w; } return b; }
+function loopSrc(ac, buf) { var s = ac.createBufferSource(); s.buffer = buf; s.loop = true; return s; }
+function startSound(k) {
+  var ac = audio(); if (!ac || SN[k]) return;
+  var out = ac.createGain(), now = ac.currentTime; out.gain.setValueAtTime(0, now); out.gain.linearRampToValueAtTime(1, now + 1.5); out.connect(ac.destination);
+  var o = { out: out, srcs: [], timer: null }; SN[k] = o;
+  if (k === "rain") { var s = loopSrc(ac, noise(ac, false)), bp = ac.createBiquadFilter(), g = ac.createGain(); bp.type = "bandpass"; bp.frequency.value = 1400; bp.Q.value = 0.4; g.gain.value = 0.07; s.connect(bp); bp.connect(g); g.connect(out); s.start(); o.srcs.push(s); }
+  if (k === "forest") {
+    var s2 = loopSrc(ac, noise(ac, true)), lp = ac.createBiquadFilter(), g2 = ac.createGain(); lp.type = "lowpass"; lp.frequency.value = 600; g2.gain.value = 0.12; s2.connect(lp); lp.connect(g2); g2.connect(out); s2.start(); o.srcs.push(s2);
+    var chirp = function () { if (SN.forest !== o) return; var t0 = ac.currentTime, n = 2 + Math.floor(Math.random() * 3);
+      for (var i = 0; i < n; i++) { var os = ac.createOscillator(), gg = ac.createGain(), at = t0 + i * 0.16, fq = 2600 + Math.random() * 1400; os.type = "sine"; os.frequency.setValueAtTime(fq, at); os.frequency.exponentialRampToValueAtTime(fq * 1.3, at + 0.1); gg.gain.setValueAtTime(0, at); gg.gain.linearRampToValueAtTime(0.03, at + 0.02); gg.gain.linearRampToValueAtTime(0, at + 0.12); os.connect(gg); gg.connect(out); os.start(at); os.stop(at + 0.15); }
+      o.timer = setTimeout(chirp, 2500 + Math.random() * 5000); };
+    o.timer = setTimeout(chirp, 1500);
+  }
+  if (k === "purr") {
+    var s3 = loopSrc(ac, noise(ac, true)), lp3 = ac.createBiquadFilter(), am = ac.createGain(), lfo = ac.createOscillator(), depth = ac.createGain(), br = ac.createGain(), lfo2 = ac.createOscillator(), d2 = ac.createGain();
+    lp3.type = "lowpass"; lp3.frequency.value = 220; am.gain.value = 0.5; lfo.frequency.value = 26; depth.gain.value = 0.5; lfo.connect(depth); depth.connect(am.gain);
+    br.gain.value = 0.4; lfo2.frequency.value = 0.28; d2.gain.value = 0.18; lfo2.connect(d2); d2.connect(br.gain);
+    s3.connect(lp3); lp3.connect(am); am.connect(br); br.connect(out); s3.start(); lfo.start(); lfo2.start(); o.srcs.push(s3, lfo, lfo2);
+  }
+}
+function stopSound(k) {
+  var o = SN[k]; if (!o) return; delete SN[k]; clearTimeout(o.timer);
+  try { var tt = AC.currentTime; o.out.gain.cancelScheduledValues(tt); o.out.gain.setValueAtTime(o.out.gain.value, tt); o.out.gain.linearRampToValueAtTime(0, tt + 0.8); } catch (e) {}
+  setTimeout(function () { o.srcs.forEach(function (x) { try { x.stop(); } catch (e) {} }); try { o.out.disconnect(); } catch (e) {} }, 900);
+}
+function syncSounds() { ["purr", "rain", "forest"].forEach(function (k) { if (S.r.running && S.sounds[k]) startSound(k); else stopSound(k); }); }
+var WL = null;
+function wake(on) { try { if (on && navigator.wakeLock) navigator.wakeLock.request("screen").then(function (l) { WL = l; }).catch(function () {}); else if (!on && WL) { WL.release(); WL = null; } } catch (e) {} }
+function tick() { if (!S.r.running) return; S.r.timer = Math.floor((Date.now() - S.r.startAt) / 1000); var el = document.getElementById("clock"); if (el) el.textContent = clockText(); }
+document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible" && S.r.running) { wake(true); tick(); } });
+var scanStream = null, scanLoop = null;
+function stopScan() { clearTimeout(scanLoop); if (scanStream) { scanStream.getTracks().forEach(function (tr) { tr.stop(); }); scanStream = null; } S.f.scanning = false; }
+function startScan() {
+  var t = T(); S.f.showIsbn = true;
+  if (!("BarcodeDetector" in window) || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { S.f.isbnMsg = t.camNo; render(); return; }
+  var det; try { det = new window.BarcodeDetector({ formats: ["ean_13", "ean_8", "upc_a"] }); } catch (e) { S.f.isbnMsg = t.camNo; render(); return; }
+  S.f.scanning = true; S.f.isbnMsg = t.scanning; render();
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
+    if (!S.f.scanning) { stream.getTracks().forEach(function (tr) { tr.stop(); }); return; }
+    scanStream = stream; var v = document.getElementById("scanVideo"); if (v) { v.srcObject = stream; v.play().catch(function () {}); }
+    var loop = function () { if (!scanStream) return; var vid = document.getElementById("scanVideo"); if (!vid || vid.readyState < 2) { scanLoop = setTimeout(loop, 300); return; }
+      det.detect(vid).then(function (codes) { if (codes && codes.length) { var code = codes[0].rawValue; stopScan(); S.f.isbn = code; render(); lookup(code); } else scanLoop = setTimeout(loop, 250); }).catch(function () { scanLoop = setTimeout(loop, 400); }); };
+    loop();
+  }).catch(function () { stopScan(); S.f.isbnMsg = t.camNo; render(); });
+}
+function guessStyle(cats, cur) {
+  var c = String(cats || "").toLowerCase();
+  if (/horror|terror|ghost|occult|supernatural/.test(c)) return "horror";
+  if (/self-help|personal|psycholog|spiritual|motivation|autoayuda|superaci|crecimiento/.test(c)) return "growth";
+  if (/poetry|poes/.test(c)) return "poetry";
+  if (/fantasy|fantas/.test(c)) return "fantasy";
+  if (/essay|philosoph|history|science|biograph|ensayo|filosof|historia/.test(c)) return "essay";
+  if (/fiction|ficci|novel/.test(c)) return "novel";
+  return cur;
+}
+function lookup(raw) {
+  var t = T(), isbn = String(raw || "").replace(/[^0-9Xx]/g, "");
+  if (isbn.length < 10) { S.f.isbnMsg = t.notFound; render(); return; }
+  if (navigator.onLine === false) { S.f.isbnMsg = t.offline; render(); return; }
+  S.f.isbnMsg = t.looking; render();
+  var fill = function (v) { var F = S.f; if (v.title) F.title = v.title; if (v.author) F.author = v.author; if (v.pages) F.pages = String(v.pages); F.style = guessStyle(v.cats, F.style); if (!F.photo && v.cover) F.photo = String(v.cover).replace(/^http:/, "https:"); F.isbn = isbn; F.isbnMsg = t.found; if (S.screen === "add") render(); };
+  fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn).then(function (r) { return r.json(); }).then(function (j) {
+    var v = j && j.items && j.items[0] && j.items[0].volumeInfo; if (!v) throw 0;
+    fill({ title: v.title, author: (v.authors || []).join(", "), pages: v.pageCount, cats: (v.categories || []).join(" "), cover: v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail) });
+  }).catch(function () {
+    return fetch("https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&format=json&jscmd=data").then(function (r) { return r.json(); }).then(function (j) {
+      var v = j && j["ISBN:" + isbn]; if (!v) throw 0;
+      fill({ title: v.title, author: (v.authors || []).map(function (a) { return a.name; }).join(", "), pages: v.number_of_pages, cats: (v.subjects || []).map(function (x) { return x.name; }).join(" "), cover: v.cover && (v.cover.medium || v.cover.large) });
+    });
+  }).catch(function () { S.f.isbnMsg = navigator.onLine === false ? t.offline : t.notFound; if (S.screen === "add") render(); });
+}
+var deferredPrompt = null;
+window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferredPrompt = e; });
+window.addEventListener("appinstalled", function () { deferredPrompt = null; S.msg = T().installed; if (S.screen === "settings") render(); });
+
+function act(a, v) {
+  var t = T(), b = byId(S.bookId), D;
+  switch (a) {
+    case "enter": go("home"); return;
+    case "go": go(v); return;
+    case "theme": S.night = !S.night; touchMeta(); render(); return;
+    case "mode": S.night = v === "night"; touchMeta(); render(); return;
+    case "lang": S.lang = v; touchMeta(); render(); return;
+    case "mood": S.mood = v; S.pickId = null; S.pickEmpty = false; render(); return;
+    case "recap": S.showRecap = v === "open"; if (S.screen !== "stats" && S.showRecap) { go("stats"); S.showRecap = true; render(); } else render(); return;
+    case "edit": if (!b) return; stopScan(); S.editId = b.id; S.f = Object.assign(blankForm(b.style), { title: b.title, author: b.author || "", status: b.status, physical: !!b.physical, pages: b.pages ? String(b.pages) : "", photo: b.cover || null, isbn: b.isbn || "" }); S.screen = "add"; render(); return;
+    case "cancelEdit": var cid = S.editId; S.editId = null; stopScan(); S.f = blankForm(S.f.style); S.bookId = cid; S.screen = byId(cid) ? "book" : "library"; render(); return;
+    case "lookup": lookup(S.f.isbn); return;
+    case "qdel": S.quotes = S.quotes.filter(function (x) { return x.id !== v; }); touchMeta(); render(); return;
+    case "wdel": S.wishes = S.wishes.filter(function (x) { return x.id !== v; }); touchMeta(); render(); return;
+    case "pick": var pool = S.books.filter(function (x) { return x.status === "toread" && (S.mood === "any" || x.style === S.mood); });
+      if (!pool.length) { S.pickEmpty = true; S.pickId = null; } else { if (pool.length > 1) pool = pool.filter(function (x) { return x.id !== S.pickId; }); S.pickId = pool[Math.floor(Math.random() * pool.length)].id; S.pickEmpty = false; }
+      render(); return;
+    case "startPick": if (S.pickId) { patchBook(S.pickId, { status: "reading" }); S.r.book = S.pickId; S.pickId = null; go("read"); } return;
+    case "open": S.prev = S.screen === "book" ? S.prev : S.screen; S.bookId = v; S.bq = ""; S.delArm = false; S.screen = "book"; render(); var mm = $app.querySelector("main"); if (mm) mm.scrollTop = 0; return;
+    case "back": S.screen = S.prev || "library"; S.delArm = false; render(); return;
+    case "filter": S.filter = v; render(); return;
+    case "coll": var i = v.indexOf("|"); S.coll = { type: v.slice(0, i), v: v.slice(i + 1) }; S.filter = "all"; render(); return;
+    case "clearColl": S.coll = null; render(); return;
+    case "fstyle": S.f.style = v; render(); return;
+    case "fstatus": S.f.status = v; render(); return;
+    case "fphys": S.f.physical = !S.f.physical; render(); return;
+    case "scan": if (S.f.scanning) { stopScan(); render(); } else startScan(); return;
+    case "saveBook": var F = S.f, title = F.title.trim(); if (!title) { F.err = true; render(); return; }
+      var pages = Math.max(0, Math.round(Number(F.pages) || 0)), isRead = F.status === "read"; stopScan();
+      if (S.editId) { var eb = byId(S.editId);
+        if (eb) { var ep = { title: title, author: F.author.trim(), style: F.style, physical: F.physical, pages: pages, cover: F.photo, isbn: F.isbn || "" };
+          if (F.status !== eb.status) { if (F.status === "read") Object.assign(ep, finishPatch(eb, pages ? { page: pages } : null)); else ep.status = F.status; }
+          if (pages && (eb.page || 0) > pages) ep.page = pages; patchBook(eb.id, ep); }
+        var eid = S.editId; S.editId = null; S.f = blankForm(F.style); S.bookId = eid; S.screen = "book"; render(); return; }
+      var nb = { id: uid(), title: title, author: F.author.trim(), style: F.style, status: F.status, physical: F.physical, pages: pages, page: isRead ? pages : 0, cover: F.photo, isbn: F.isbn || "", reads: isRead ? 1 : 0, finishes: isRead ? [Date.now()] : [], rating: 0, fear: 0, vidas: {}, note: "", created: Date.now() };
+      S.books = S.books.concat([nb]); touchBook(nb.id);
+      S.placedNext = nb.physical ? fmt(t.placed, "n", derive().pos[nb.id]) : "";
+      S.f = blankForm(F.style);
+      S.filter = "all"; S.coll = null; go("library"); return;
+    case "status": if (!b) return; var p = { status: v }; if (v === "read" && b.status !== "read") p = finishPatch(b, b.pages ? { page: b.pages } : null); patchBook(b.id, p); render(); return;
+    case "curphys": if (b) { patchBook(b.id, { physical: !b.physical }); render(); } return;
+    case "page": if (!b) return; var np = Math.max(0, Math.min(b.pages, (b.page || 0) + Number(v))), pp = { page: np };
+      if (np > 0 && b.status === "toread") pp.status = "reading"; if (np >= b.pages && b.status !== "read") pp = finishPatch(b, { page: np });
+      patchBook(b.id, pp); render(); return;
+    case "reread": if (b) { patchBook(b.id, finishPatch(b)); render(); } return;
+    case "paw": if (b) { var n = Number(v); patchBook(b.id, { rating: b.rating === n ? 0 : n }); render(); } return;
+    case "candle": if (b) { var c = Number(v); patchBook(b.id, { fear: b.fear === c ? 0 : c }); render(); } return;
+    case "vida": if (b) { var vd = Object.assign({}, b.vidas); vd[v] = !vd[v]; patchBook(b.id, { vidas: vd }); render(); } return;
+    case "bquote": if (b && S.bq.trim()) { S.quotes = S.quotes.concat([{ id: uid(), text: S.bq.trim(), book: b.title, bookId: b.id }]); S.bq = ""; touchMeta(); render(); } return;
+    case "del": if (!b) return; if (!S.delArm) { S.delArm = true; render(); return; }
+      S.books = S.books.filter(function (x) { return x.id !== b.id; }); delete dirtyBooks[b.id]; delBooks[b.id] = 1; schedule(); S.delArm = false; S.bookId = null; S.screen = S.prev || "library"; render(); return;
+    case "rbook": S.r.book = v || null; render(); return;
+    case "snd": S.sounds[v] = !S.sounds[v]; touchMeta(); syncSounds(); render(); return;
+    case "startRead": clearInterval(timerIv); S.r.running = true; S.r.after = false; S.r.timer = 0; S.r.startAt = Date.now(); S.r.vidas = {}; syncSounds(); wake(true); render();
+      timerIv = setInterval(tick, 1000); return;
+    case "stopRead": tick(); clearInterval(timerIv); S.r.running = false; S.r.after = true; syncSounds(); wake(false); var rb = byId(S.r.book); S.r.page = rb ? String(rb.page || "") : ""; render(); return;
+    case "rvida": S.r.vidas[v] = !S.r.vidas[v]; render(); return;
+    case "saveSession": var R = S.r, bk = byId(R.book), pr = 0;
+      if (bk) { var np2 = Math.max(0, Math.round(Number(R.page) || 0)); if (bk.pages) np2 = Math.min(np2, bk.pages); pr = Math.max(0, np2 - (bk.page || 0));
+        var p2 = { page: np2 }; if (bk.status === "toread") p2.status = "reading"; if (bk.pages && np2 >= bk.pages && bk.status !== "read") p2 = finishPatch(bk, { page: np2 }); patchBook(bk.id, p2); }
+      S.sessions = S.sessions.concat([{ mins: Math.max(1, Math.round(R.timer / 60)), pages: pr, vidas: R.vidas, at: Date.now(), bookId: R.book || null }]);
+      S.r = { running: false, after: false, timer: 0, startAt: 0, book: R.book, page: "", vidas: {} }; touchMeta(); render(); return;
+    case "qsave": if (!S.q.text.trim()) { S.q.err = true; render(); return; } var qb = S.q.book.trim(), qm = S.books.filter(function (x) { return qb && x.title.toLowerCase() === qb.toLowerCase(); })[0];
+      S.quotes = S.quotes.concat([{ id: uid(), text: S.q.text.trim(), book: qm ? qm.title : qb, bookId: qm ? qm.id : null }]); S.q = { text: "", book: "", err: false }; touchMeta(); render(); return;
+    case "wsave": if (!S.w.title.trim()) { S.w.err = true; render(); return; } S.wishes = S.wishes.concat([{ id: uid(), title: S.w.title.trim(), author: S.w.author.trim(), where: S.w.where.trim() }]); S.w = { title: "", author: "", where: "", err: false }; touchMeta(); render(); return;
+    case "wgot": var w = S.wishes.filter(function (x) { return x.id === v; })[0]; if (!w) return;
+      var wb = { id: uid(), title: w.title, author: w.author, style: "other", status: "toread", physical: true, pages: 0, page: 0, cover: null, reads: 0, finishes: [], rating: 0, fear: 0, vidas: {}, note: "", created: Date.now() };
+      S.wishes = S.wishes.filter(function (x) { return x.id !== v; }); S.books = S.books.concat([wb]); touchBook(wb.id); touchMeta(); render(); return;
+    case "ltab": S.l.tab = v; S.l.err = false; render(); return;
+    case "lsave": if (!S.l.title.trim() || !S.l.person.trim()) { S.l.err = true; render(); return; }
+      S.loans = S.loans.concat([{ id: uid(), title: S.l.title.trim(), person: S.l.person.trim(), dir: S.l.tab, at: Date.now() }]); S.l.title = ""; S.l.person = ""; S.l.err = false; touchMeta(); render(); return;
+    case "ldone": S.loans = S.loans.filter(function (x) { return x.id !== v; }); touchMeta(); render(); return;
+    case "shelf": S.shelfSel = Number(v); S.zPage = 0; render(); return;
+    case "zprev": D = derive(); var nS = Math.ceil(D.phys.length / 25); if (S.zPage > 0) S.zPage--; else if (S.shelfSel > 0) { S.shelfSel--; S.zPage = 2; } render(); return;
+    case "znext": D = derive(); var tot = D.phys.length, nSh = Math.ceil(tot / 25), inS = Math.min(25, tot - S.shelfSel * 25), zP = Math.ceil(inS / 10);
+      if (S.zPage < zP - 1) S.zPage++; else if (S.shelfSel < nSh - 1) { S.shelfSel++; S.zPage = 0; } render(); return;
+    case "find": D = derive(); var k = Math.round(Number(S.find)), tn = D.phys.length;
+      if (!S.find || !(k >= 1 && k <= tn)) { S.findErr = fmt(t.badNum, "n", tn); render(); return; }
+      S.hit = k; S.shelfSel = Math.floor((k - 1) / 25); S.zPage = Math.floor(((k - 1) % 25) / 10); S.findErr = ""; render(); return;
+    case "install": var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone;
+      if (window.claude) S.msg = t.installNote;
+      else if (standalone) S.msg = t.installed;
+      else if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(function () { deferredPrompt = null; }).catch(function () {}); return; }
+      else S.msg = /iphone|ipad|ipod/i.test(navigator.userAgent) ? t.installIOS : t.installAndroid;
+      render(); return;
+    case "export": var data = JSON.stringify(Object.assign({ app: "7vidas", version: VERSION, exported: new Date().toISOString(), books: S.books }, meta()));
+      var name = "7vidas-respaldo-" + new Date().toISOString().slice(0, 10) + ".json";
+      if (DL) DL.save({ filename: name, data: data }).then(function () { S.msg = t.exportOk; render(); }).catch(function () {});
+      else { try { var a2 = document.createElement("a"); a2.href = URL.createObjectURL(new Blob([data], { type: "application/json" })); a2.download = name; document.body.appendChild(a2); a2.click(); a2.remove(); S.msg = t.exportOk; } catch (e) {} render(); }
+      return;
+  }
+}
+function setField(path, val) {
+  if (path === "note") { var b = byId(S.bookId); if (b) { b.note = val; touchBook(b.id); } return; }
+  if (path === "bq" || path === "find") { S[path] = val; if (path === "find" && S.findErr) { S.findErr = ""; rmErr("find"); } return; }
+  var p = path.split("."); S[p[0]][p[1]] = val;
+  if (S[p[0]].err) { S[p[0]].err = false; rmErr(p[0]); }
+}
+function rmErr(k) { var el = $app.querySelector('[data-err="' + k + '"]'); if (el) el.remove(); }
+function readAsDataURL(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = rej; r.readAsDataURL(file); }); }
+function compress(file) {
+  return readAsDataURL(file).then(function (src) { return new Promise(function (res, rej) {
+    var img = new Image(); img.onload = function () {
+      var sc = Math.min(1, 520 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+      c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc); c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(function (bl) { if (bl) res({ blob: bl, url: c.toDataURL("image/jpeg", 0.78) }); else rej(); }, "image/jpeg", 0.78);
+    }; img.onerror = rej; img.src = src; }); });
+}
+function handlePhoto(file) {
+  S.f.busy = true; render();
+  compress(file).then(function (r) {
+    if (!ASSETS) return r.url;
+    return ASSETS.upload(r.blob, { type: "image/jpeg" }).then(function (u) { return u.url; }).catch(function () { return r.url; });
+  }).then(function (url) { S.f.photo = url; }).catch(function () {}).then(function () { S.f.busy = false; if (S.screen === "add") render(); });
+}
+function doImport(file) {
+  var t = T(); var r = new FileReader();
+  r.onload = function () { try { var d = JSON.parse(r.result); if (!d || d.app !== "7vidas" || !Array.isArray(d.books)) throw 0;
+      S.books.forEach(function (b) { delBooks[b.id] = 1; }); applyData(d); S.books.forEach(function (b) { delete delBooks[b.id]; dirtyBooks[b.id] = 1; }); metaDirty = true; schedule(); S.msg = t.importOk; }
+    catch (e) { S.msg = t.importBad; } render(); };
+  r.readAsText(file);
+}
+$app.addEventListener("click", function (e) { var el = e.target.closest("[data-a]"); if (el && $app.contains(el)) act(el.getAttribute("data-a"), el.getAttribute("data-v")); });
+$app.addEventListener("input", function (e) { var f = e.target.getAttribute && e.target.getAttribute("data-f"); if (f) setField(f, e.target.value); });
+$app.addEventListener("change", function (e) { var el = e.target; if (!el.files || !el.files[0]) return; if (el.id === "photo") handlePhoto(el.files[0]); else if (el.id === "importFile") doImport(el.files[0]); });
+$app.addEventListener("keydown", function (e) { if (e.key === "Enter" && e.target.getAttribute && e.target.getAttribute("data-f") === "find") act("find"); });
+
+buildDecor(); render();
+setTimeout(function () { if (S.screen === "splash") go("home"); }, 2800);
+storageReady.then(connect, connect);
+if (!window.claude && "serviceWorker" in navigator && /^https?:$/.test(location.protocol)) window.addEventListener("load", function () { navigator.serviceWorker.register("./sw.js").catch(function () {}); });
+})();
+</script>
+</body>
+</html>
