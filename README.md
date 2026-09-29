@@ -2,7 +2,7 @@
 
 *Siete vidas en cada página.*
 
-Creada por melitalove 📚 para melitalove · versión 1.1.0
+Creada por melitalove 📚 para melitalove · versión 1.1.1
 
 7 Vidas es mi biblioteca personal: una app para registrar mis libros, mis lecturas y todo lo que cada libro me deja. Frida y Lina, mis gatas, me acompañan en cada pantalla.
 
@@ -25,14 +25,16 @@ Creada por melitalove 📚 para melitalove · versión 1.1.0
 index.html              la app completa
 manifest.webmanifest    nombre, colores e íconos para instalarla
 sw.js                   funcionamiento sin conexión
-icons/                  ícono de siete estrellas en todos los tamaños
+icon-*.png, maskable-512.png,
+apple-touch-icon.png,
+favicon.svg             ícono de siete estrellas en todos los tamaños
 .nojekyll               evita que GitHub Pages procese los archivos
 ```
 
 ## Publicarla en GitHub Pages
 
 1. En GitHub, crea un repositorio nuevo, por ejemplo `7vidas`.
-2. Sube todos estos archivos respetando la carpeta `icons`.
+2. Sube todos estos archivos a la raíz del repositorio, sin carpetas.
 3. Ve a **Settings → Pages**. En *Source* elige **Deploy from a branch**, rama **main**, carpeta **/ (root)** y guarda.
 4. En uno o dos minutos la app queda en `https://TU-USUARIO.github.io/7vidas/`.
 

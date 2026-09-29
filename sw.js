@@ -1,11 +1,11 @@
 /* 7 Vidas · service worker · creada por melitalove para melitalove */
-const VERSION = "v1.1.0";
+const VERSION = "v1.1.1";
 const SHELL = "7vidas-shell-" + VERSION;
 const RUNTIME = "7vidas-runtime";
-const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icons/favicon.svg", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/maskable-512.png", "./icons/apple-touch-icon.png"];
+const FILES = ["./", "./index.html", "./manifest.webmanifest", "./favicon.svg", "./icon-192.png", "./icon-512.png", "./maskable-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(SHELL).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(SHELL).then((c) => Promise.all(FILES.map((f) => c.add(f).catch(() => null)))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", (e) => {
